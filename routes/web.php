@@ -59,8 +59,8 @@ Route::namespace('Admin')->prefix('ad')->group(function () {
             Route::get('add','BrandController@create')->name('brand.add.form');
 
             Route::post('add','BrandController@store')->name('brand.add');
-
-            Route::get('delete/{id}','BrandController@destroy')->name('cbranddelete');
+          
+            Route::get('delete/{id}','BrandController@destroy')->name('brand.delete');
         });
         // Supplier
         Route::group(['prefix'=>'supplier'],function(){
@@ -89,6 +89,8 @@ Route::namespace('Admin')->prefix('ad')->group(function () {
             Route::post('add','ProductController@store')->name('product.add');
 
             Route::get('delete/{id}','ProductController@destroy')->name('product.delete');
+
+            Route::get('show/{id}','ProductController@show')->name('product.show');
 
             Route::get('update-status/{id}/{status}','ProductController@updateStatus')->name('product.update.status');
         });
