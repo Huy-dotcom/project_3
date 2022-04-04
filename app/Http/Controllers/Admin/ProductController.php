@@ -155,4 +155,10 @@ class ProductController extends Controller
         $product = Product::find($id); 
         return view('admin.products.show', compact('product'));
     }
+
+    public function updateStatus($id, $status)
+    {
+        Product::where('id', $id)->update(['status' => $status]);
+        return redirect()->route('product.list')->with("success","Cập nhật trạng thái thành công");
+    }
 }
