@@ -50,26 +50,35 @@ class ProductController extends Controller
         if ($request->hasFile('image')) {
             //  Let's do everything here
             if ($request->file('image')->isValid()) {
-                //
-                $validated = $request->validate([
-                    'title' => 'required',
-                    'price' => 'required',
-                    'category_id' => 'required',
-                    'brand_id' => 'required',
-                    'supplier_id' => 'required',
-                    'quantity' => 'required'
-                ]);
                 $request->image->storeAs('/public/images/products', $request->image->getClientOriginalName());
-                Product::create([
-                   'name' => $validated['title'],
-                   'price' => $validated['price'],
-                   'category_id' => $validated['category_id'],
-                   'brand_id' => $validated['brand_id'],
-                   'url' => '/storage/images/products/' . $request->image->getClientOriginalName(),
-                   'description' => $request->input('content'),
-                   'supplier_id' => $validated['supplier_id'],
-                   'qty' => $validated['quantity']
-                ]);
+                if ($request->type == 0) {
+                    Product::create([
+                        'type' => $request->type,
+                        'name' => $request->name,
+                        'price' => $request->price,
+                        'url' => '/storage/images/products/' . $request->image->getClientOriginalName(),
+                        'description' => $request->description,
+                        'category_id' => $request->category_id,
+                        'brand_id' => $request->brand_id,
+                        'supplier_id' => $request->supplier_id,
+                        'qty' => $request->qty
+                     ]);
+                } else {
+                    Product::create([
+                        'type' => $request->type,
+                        'name' => $request->name,
+                        'price' => $request->price,
+                        'sale_price' => $request->price_sale,
+                        'start_date' => $request->start_date,
+                        'end_date' => $request->end_date,
+                        'url' => '/storage/images/products/' . $request->image->getClientOriginalName(),
+                        'description' => $request->description,
+                        'category_id' => $request->category_id,
+                        'brand_id' => $request->brand_id,
+                        'supplier_id' => $request->supplier_id,
+                        'qty' => $request->qty
+                     ]);
+                }
                 return redirect()->route('product.list')->with("success","Thêm thành công");
             }
         }
@@ -108,15 +117,24 @@ class ProductController extends Controller
                 $product->url = '/storage/images/products/' .  $request->image->getClientOriginalName();
             }
         }
-        $product->name = $request->input('title');
-        $product->price = $request->input('price');
-        $product->category_id = $request->input('category_id');
-        $product->brand_id = $request->input('brand_id');
-        $product->description = $request->input('content');
-        $product->supplier_id = $request->input('supplier_id');
-        $product->qty = $request->input('quantity');
+        $product->type = $request->type;
+        $product->name = $request->name;
+        if ($request->type == 0) {
+            $product->price = $request->price;
+        } else {
+            $product->price = $request->price;
+            $product->sale_price = $request->price_sale;
+            $product->start_date = $product->start_date;
+            $product->end_date = $product->end_date;
+        }
+        $product->category_id = $request->category_id;
+        $product->brand_id = $request->brand_id;
+        $product->description = $request->description;
+        $product->brand_id = $request->brand_id;
+        $product->supplier_id = $request->supplier_id;
+        $product->qty = $request->qty;
         $product->save();
-        return redirect()->route('product.list')->with("success","Sửa thành công");
+        return redirect()->route('product.list')->with("success","Cập nhật thành công");
     }
 
      /**
@@ -130,5 +148,11 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->delete();
         return redirect()->route('product.list')->with("success","Xóa thành công");
+    }
+
+    public function show($id)
+    {
+        $product = Product::find($id); 
+        return view('admin.products.show', compact('product'));
     }
 }

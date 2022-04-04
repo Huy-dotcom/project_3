@@ -30,6 +30,21 @@
 
 <!-- Nav Item - Utilities Collapse Menu -->
 <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEight" aria-expanded="true"
+        aria-controls="collapseEight">
+        <i class="fas fa-fw fa-table"></i>
+        <span>Hãng</span>
+    </a>
+    <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="{{ route('brand.list') }}">Danh sách</a>
+            <a class="collapse-item" href="{{ route('brand.add') }}">Thêm mới</a>
+        </div>
+    </div>
+</li>
+
+<!-- Nav Item - Utilities Collapse Menu -->
+<li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
         aria-controls="collapseTwo">
         <i class="fas fa-fw fa-table"></i>

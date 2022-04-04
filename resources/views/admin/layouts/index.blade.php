@@ -186,13 +186,32 @@
     <script src="{{ asset('admin/ckeditor/ckeditor.js') }}"></script>
     <script>CKEDITOR.replace('description')</script>
     <script>
+        // Image Preview
+        const thumbnail = document.getElementById("image");
+        const previewContainer = document.getElementById("imagePreview");
+        const previewImage = previewContainer.querySelector(".image-preview__image");
+        const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+
+        thumbnail.addEventListener("change",function(){
+            const file = this.files[0];
+
+            const reader = new FileReader();
+            previewDefaultText.style.display = "none";
+            previewImage.style.display = "block";
+            reader.addEventListener("load",function(){
+                previewImage.setAttribute("src",this.result);
+            });
+            reader.readAsDataURL(file);
+        });
         $(document).ready(function() {
-            $('#price_sale').prop('required',false);
-            $('#start_date').prop('required',false);
-            $('#end_date').prop('required',false);
-            $('#price_sale_container').hide();
-            $('#start_date_container').hide();
-            $('#end_date_container').hide();
+            if ($('#price_sale').val() <= 0) {
+                $('#price_sale').prop('required',false);
+                $('#start_date').prop('required',false);
+                $('#end_date').prop('required',false);
+                $('#price_sale_container').hide();
+                $('#start_date_container').hide();
+                $('#end_date_container').hide();
+            }
             $('#type').change(function(){
                 var type = $(this).val();
                 if (type == 0) {
@@ -204,7 +223,6 @@
                     $('#start_date_container').hide();
                     $('#end_date_container').hide();
                 } else {
-                    $('#price').prop('disabled',true);
                     $('#price_sale').prop('required',true);
                     $('#start_date').prop('required',true);
                     $('#end_date').prop('required',true);
@@ -214,6 +232,20 @@
                 }
             });
         });
+
+        function checkPrice()
+        {
+            var type = $('#type').val();
+            var price = $('#price').val();
+            var sale_price = $('#price_sale').val();
+            if (type == 1) {
+                if (sale_price >= price) {
+                    alert('Giá tiền phải lớn hơn giá khuyến mãi');
+                    return false;
+                }
+            }
+            return true;
+        }
     </script>
 </body>
 
