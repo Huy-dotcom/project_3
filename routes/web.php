@@ -109,3 +109,6 @@ Route::namespace('Admin')->prefix('ad')->group(function () {
         });
     });
 });
+Route::get('/user_login',function() {
+    return view('user.login');
+});
