@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\User\HomepageController;
+use App\Http\Middleware\CheckUserLoginMiddleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,7 +37,7 @@ Route::namespace('Admin')->prefix('ad')->group(function () {
         // Category
         Route::group(['prefix'=>'category'],function(){
             Route::get('list','CategoryController@index')->name('category.list');
-            
+
             Route::get('edit/{id}','CategoryController@edit')->name('category.edit.form');
 
             Route::post('edit/{id}','CategoryController@update')->name('category.edit');
@@ -42,13 +45,13 @@ Route::namespace('Admin')->prefix('ad')->group(function () {
             Route::get('add','CategoryController@create')->name('category.add.form');
 
             Route::post('add','CategoryController@store')->name('category.add');
-            
+
             Route::get('delete/{id}','CategoryController@destroy')->name('category.delete');
         });
         // Brand
         Route::group(['prefix'=>'brand'],function(){
             Route::get('list','BrandController@index')->name('brand.list');
-            
+
             Route::get('edit/{id}','BrandController@edit')->name('brand.edit.form');
 
             Route::post('edit/{id}','BrandController@update')->name('brand.edit');
@@ -56,13 +59,13 @@ Route::namespace('Admin')->prefix('ad')->group(function () {
             Route::get('add','BrandController@create')->name('brand.add.form');
 
             Route::post('add','BrandController@store')->name('brand.add');
-            
+          
             Route::get('delete/{id}','BrandController@destroy')->name('brand.delete');
         });
         // Supplier
         Route::group(['prefix'=>'supplier'],function(){
             Route::get('list','SupplierController@index')->name('supplier.list');
-            
+
             Route::get('edit/{id}','SupplierController@edit')->name('supplier.edit.form');
 
             Route::post('edit/{id}','SupplierController@update')->name('supplier.edit');
@@ -70,13 +73,13 @@ Route::namespace('Admin')->prefix('ad')->group(function () {
             Route::get('add','SupplierController@create')->name('supplier.add.form');
 
             Route::post('add','SupplierController@store')->name('supplier.add');
-            
+
             Route::get('delete/{id}','SupplierController@destroy')->name('supplier.delete');
         });
         // Product
         Route::group(['prefix'=>'product'],function(){
             Route::get('list','ProductController@index')->name('product.list');
-            
+
             Route::get('edit/{id}','ProductController@edit')->name('product.edit.form');
 
             Route::post('edit/{id}','ProductController@update')->name('product.edit');
@@ -84,7 +87,7 @@ Route::namespace('Admin')->prefix('ad')->group(function () {
             Route::get('add','ProductController@create')->name('product.add.form');
 
             Route::post('add','ProductController@store')->name('product.add');
-            
+
             Route::get('delete/{id}','ProductController@destroy')->name('product.delete');
 
             Route::get('show/{id}','ProductController@show')->name('product.show');
@@ -94,7 +97,7 @@ Route::namespace('Admin')->prefix('ad')->group(function () {
         // User
         Route::group(['prefix'=>'user'],function(){
             Route::get('list','UserController@index')->name('customer.list');
-            
+
             Route::get('delete/{id}','UserController@destroy')->name('customer.delete');
 
             Route::get('disable/{id}','UserController@disable')->name('customer.disable');
@@ -111,6 +114,15 @@ Route::namespace('Admin')->prefix('ad')->group(function () {
         });
     });
 });
-Route::get('/user_login',function() {
-    return view('user.login');
+
+// user
+Route::middleware([CheckUserLoginMiddleware::class])->group(function(){
+    Route::get('/user/login',[AuthController::class, 'login'])->name('user_login');
+    Route::post('/user/loginprocess',[AuthController::class, 'loginProcess'])->name('login_process');
 });
+
+Route::get('/homepage',[HomepageController::class, 'index'])->name('homepage');
+
+Route::get('/user/signup',[AuthController::class, 'signUp'])->name('user_sign_up');
+
+Route::post('user/signupprocess',[AuthController::class, 'signUpProcess'])->name('sign_up_process');
