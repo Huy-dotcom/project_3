@@ -127,3 +127,4 @@ Route::get('/home',[HomepageController::class, 'index'])->name('homepage');
 Route::get('/user/signup',[AuthController::class, 'signUp'])->name('user_sign_up');
 
 Route::post('user/signupprocess',[AuthController::class, 'signUpProcess'])->name('sign_up_process');
+

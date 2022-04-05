@@ -41,13 +41,13 @@
                             <input type="submit" value="Login" class="btn float-right login_btn">
                         </div>
                         <div class="text-center">
-                            <p class="text-danger">{{ Session::get('error') }}</p>
+                            <p style="opacity: 1; color: white">{{ Session::get('error') }}</p>
                         </div>
                     </form>
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-center links">
-                        Don't have an account?<a href="#">Sign Up</a>
+                        Don't have an account?<a href="{{ route('user_sign_up') }}">Sign Up</a>
                     </div>
                 </div>
             </div>
