@@ -52,6 +52,9 @@
                                 </div>
 
                             </div>
+                            <div style="display:block; min-width:0px; min-height: 0px; background-color: yellow; border: 1px orange solid; border-radius: 1%">
+                                <p style="opacity: 0;">{{ Session::get('error') }}</p>
+                            </div>
                             <div class="form-group">
                                 <input type="submit" value="sign up" class="btn float-right login_btn">
                             </div>
