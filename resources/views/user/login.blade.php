@@ -40,6 +40,9 @@
                         <div class="form-group">
                             <input type="submit" value="Login" class="btn float-right login_btn">
                         </div>
+                        <div class="text-center">
+                            <p class="text-danger">{{ Session::get('error') }}</p>
+                        </div>
                     </form>
                 </div>
                 <div class="card-footer">

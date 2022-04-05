@@ -59,7 +59,7 @@ Route::namespace('Admin')->prefix('ad')->group(function () {
             Route::get('add','BrandController@create')->name('brand.add.form');
 
             Route::post('add','BrandController@store')->name('brand.add');
-          
+
             Route::get('delete/{id}','BrandController@destroy')->name('brand.delete');
         });
         // Supplier
@@ -121,7 +121,8 @@ Route::middleware([CheckUserLoginMiddleware::class])->group(function(){
     Route::post('/user/loginprocess',[AuthController::class, 'loginProcess'])->name('login_process');
 });
 
-Route::get('/homepage',[HomepageController::class, 'index'])->name('homepage');
+Route::get('/home',[HomepageController::class, 'index'])->name('homepage');
+
 
 Route::get('/user/signup',[AuthController::class, 'signUp'])->name('user_sign_up');
 

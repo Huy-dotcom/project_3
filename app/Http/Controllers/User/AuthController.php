@@ -38,8 +38,6 @@ class AuthController extends Controller
         $password = $request->get('password');
         $phone = $request->get('phone');
         $sex = $request->get('sex');
-        $varArr[5] = [$name,$email,$password,$phone,$sex];
-
         $user = new User();
         $user->name = $name;
         $user->email = $email;
@@ -50,10 +48,10 @@ class AuthController extends Controller
             $user->save();
         }catch(Exception $e){
             // return $e->getMessage();
-            return Redirect::route('user_sign_up')->with('error', $e->getTrace());
+            return Redirect::route('user_sign_up')->with('error', 'Email already exist!');
         }
         $request->session()->put('user_id',$user->id);
         $request->session()->put('user_name',$user->name);
-        return view('user.homepage');
+        return redirect()->route('homepage');
     }
 }
