@@ -99,11 +99,25 @@ Route::namespace('Admin')->prefix('ad')->group(function () {
         Route::group(['prefix'=>'user'],function(){
             Route::get('list','UserController@index')->name('customer.list');
 
+            Route::get('edit/{id}','UserController@edit')->name('customer.edit.form');
+
+            Route::post('edit/{id}','UserController@update')->name('customer.edit');
+
             Route::get('delete/{id}','UserController@destroy')->name('customer.delete');
+        });
+        // Staff
+        Route::group(['prefix'=>'staff', 'middleware' => 'check.role'],function(){
+            Route::get('list','StaffController@index')->name('staff.list');
 
-            Route::get('disable/{id}','UserController@disable')->name('customer.disable');
+            Route::get('edit/{id}','StaffController@edit')->name('staff.edit.form');
 
-            Route::get('enable/{id}','UserController@enable')->name('customer.enable');
+            Route::post('edit/{id}','StaffController@update')->name('staff.edit');
+
+            Route::get('add','StaffController@create')->name('staff.add.form');
+
+            Route::post('add','StaffController@store')->name('staff.add');
+
+            Route::get('delete/{id}','StaffController@destroy')->name('staff.delete');
         });
         // Order
         Route::group(['prefix'=>'order'],function(){
@@ -122,7 +136,7 @@ Route::middleware([CheckUserLoginMiddleware::class])->group(function(){
     Route::post('/user/loginprocess',[AuthController::class, 'loginProcess'])->name('login_process');
 });
 
-Route::get('/home',[HomepageController::class, 'index'])->name('homepage');
+Route::get('/',[HomepageController::class, 'index'])->name('homepage');
 
 Route::get('/shop',[ShoppageController::class, 'index'])->name('shoppage');
 

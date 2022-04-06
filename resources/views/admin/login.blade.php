@@ -20,6 +20,8 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/custom/logo.png') }}">
+
 </head>
 
 <body class="bg-gradient-primary">

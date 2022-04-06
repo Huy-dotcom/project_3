@@ -23,6 +23,8 @@
     <!-- Custom styles for this page -->
     <link href="{{ asset('admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/custom/logo.png') }}">
+
     <style>
         /* Image preview */
         .image-preview {
