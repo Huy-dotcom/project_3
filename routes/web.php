@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\HomepageController;
+use App\Http\Controllers\user\ShoppageController;
 use App\Http\Middleware\CheckUserLoginMiddleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -123,6 +124,7 @@ Route::middleware([CheckUserLoginMiddleware::class])->group(function(){
 
 Route::get('/home',[HomepageController::class, 'index'])->name('homepage');
 
+Route::get('/shop',[ShoppageController::class, 'index'])->name('shoppage');
 
 Route::get('/user/signup',[AuthController::class, 'signUp'])->name('user_sign_up');
 
