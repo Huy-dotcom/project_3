@@ -95,6 +95,24 @@
     </div>
 </li>
 
+@if (Auth::guard('admin')->user()->role == 0)
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNine" aria-expanded="true"
+            aria-controls="collapseNine">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Nhân viên</span>
+        </a>
+        <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ route('staff.list') }}">Danh sách</a>
+                <a class="collapse-item" href="{{ route('staff.add') }}">Thêm mới</a>
+            </div>
+        </div>
+    </li>
+@endif
+
+
 <!-- Divider -->
 <hr class="sidebar-divider">
 

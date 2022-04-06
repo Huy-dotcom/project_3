@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2022 at 09:36 AM
+-- Generation Time: Apr 06, 2022 at 08:03 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.4.21
 
@@ -35,15 +35,18 @@ CREATE TABLE `admins` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `role` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `admins`
 --
 
-INSERT INTO `admins` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@gmail.com', '2022-04-03 11:17:08', '$2y$10$0iC3bOy.heoKMDYpcc.SGOrq01rYiKXFctEkydaiMeDYKvhTumhbG', 'kUxZiP3rkz', '2022-04-03 11:17:09', '2022-04-03 11:17:09');
+INSERT INTO `admins` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role`) VALUES
+(1, 'admin', 'admin@gmail.com', '2022-04-03 11:17:08', '$2y$10$0iC3bOy.heoKMDYpcc.SGOrq01rYiKXFctEkydaiMeDYKvhTumhbG', 'kUxZiP3rkz', '2022-04-03 11:17:09', '2022-04-03 11:17:09', 0),
+(2, 'Nguyễn Văn B', 'nguyenvanb@gmail.com', NULL, '$2y$10$4orrA1NDIMH2TgPQvI7xOO88Vx19DPRY2Wdzo51w8nvYv9vW02Xsq', '6FpMa0Q0VRmw1zrhnsbNKHdj7zEbSS6rvVQLPN3fsmN5KuniCGbgFOc5q9al', '2022-04-06 10:38:33', '2022-04-06 10:40:12', 1),
+(5, 'Nguyễn Văn A', 'nguyenvana@gmail.com', NULL, '$2y$10$mOjkewuOYEWjhmJWgNorke4NBRd.lsYBmMevC0Sgs/mik0R2hKdXS', NULL, '2022-04-06 11:01:14', '2022-04-06 11:01:14', 1);
 
 -- --------------------------------------------------------
 
@@ -90,6 +93,21 @@ INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -131,7 +149,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (26, '2022_04_03_021345_create_products_table', 1),
 (27, '2022_04_03_181318_create_orders_table', 1),
 (28, '2022_04_03_181335_create_order_details_table', 1),
-(29, '2022_04_04_035420_add_type_column_to_products_table', 2);
+(29, '2022_04_04_035420_add_type_column_to_products_table', 2),
+(30, '2022_04_06_165729_create_comments_table', 3);
 
 -- --------------------------------------------------------
 
@@ -294,6 +313,14 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `comments_user_id_index` (`user_id`),
+  ADD KEY `comments_product_id_index` (`product_id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -366,7 +393,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `brands`
@@ -381,6 +408,12 @@ ALTER TABLE `categories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -390,7 +423,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `order_details`
@@ -420,11 +453,18 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `comments`
+--
+ALTER TABLE `comments`
+  ADD CONSTRAINT `comments_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `comments_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `orders`
