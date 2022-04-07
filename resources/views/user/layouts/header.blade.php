@@ -52,27 +52,29 @@
                     <div class="wrap-search center-section">
                         <div class="wrap-search-form">
                             {{-- search bar --}}
-                            <form action="{{ route('shoppage') }}" id="form-search-top" name="form-search-top">
+                            <form action="{{ route('shoppage') }}" method="get" id="form-search-top" name="form-search-top">
                                 <input type="text" name="search"
                                     @if (isset($search) && $search != "")
                                         value="{{$search}}"
                                     @endif
                                  placeholder="Search here...">
-                                <button form="form-search-top" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                                <div class="wrap-list-cate">
-                                    <select name="cat">
+                                 <button form="form-search-top" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                {{-- <div class="wrap-list-cate">
+                                    <select name="cat" id="cat-list-on-header">
                                         <option value="all" selected>Tất cả</option>
                                         @foreach ($category as $cat)
-                                            <option value="{{$cat->id}}">{{ $cat->name }}</option>
+                                            <option value="{{$cat->id}}" @if (isset($catId) && $catId == $cat->id)
+                                                selected
+                                            @endif>{{ $cat->name }}</option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div> --}}
                             </form>
                         </div>
                     </div>
 
                     <div class="wrap-icon right-section">
-                        <div class="wrap-icon-section wishlist">
+                        {{-- <div class="wrap-icon-section wishlist">
                             <a href="#" class="link-direction">
                                 <i class="fa fa-heart" aria-hidden="true"></i>
                                 <div class="left-info">
@@ -80,7 +82,7 @@
                                     <span class="title">Wishlist</span>
                                 </div>
                             </a>
-                        </div>
+                        </div> --}}
                         <div class="wrap-icon-section minicart">
                             <a href="#" class="link-direction">
                                 <i class="fa fa-shopping-basket" aria-hidden="true"></i>
@@ -129,9 +131,6 @@
                             </li>
                             <li class="menu-item">
                                 <a href="checkout.html" class="link-term mercado-item-title">Checkout</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="contact-us.html" class="link-term mercado-item-title">Contact Us</a>
                             </li>
                         </ul>
                     </div>

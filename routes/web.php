@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\HomepageController;
+use App\Http\Controllers\user\ProductDetailController;
 use App\Http\Controllers\user\ShoppageController;
 use App\Http\Middleware\CheckUserLoginMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -143,4 +144,6 @@ Route::get('/shop',[ShoppageController::class, 'index'])->name('shoppage');
 Route::get('/user/signup',[AuthController::class, 'signUp'])->name('user_sign_up');
 
 Route::post('user/signupprocess',[AuthController::class, 'signUpProcess'])->name('sign_up_process');
+
+Route::get('/detail/{id}',[ProductDetailController::class, 'index'])->name('product_detail');
 
