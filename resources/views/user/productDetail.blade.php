@@ -117,7 +117,8 @@
                                 </p>
                             </div>
                             <div class="tab-content-item " id="add_infomation">
-                                <table class="shop_attributes">
+                                Chưa cập nhật
+                                {{-- <table class="shop_attributes">
                                     <tbody>
                                         <tr>
                                             <th>Weight</th><td class="product_weight">1 kg</td>
@@ -129,31 +130,33 @@
                                             <th>Color</th><td><p>Black, Blue, Grey, Violet, Yellow</p></td>
                                         </tr>
                                     </tbody>
-                                </table>
+                                </table> --}}
                             </div>
                             <div class="tab-content-item " id="review">
 
                                 <div class="wrap-review-form">
 
                                     <div id="comments">
-                                        <h2 class="woocommerce-Reviews-title">01 review for <span>Radiant-360 R6 Chainsaw Omnidirectional [Orage]</span></h2>
+                                        <h2 class="woocommerce-Reviews-title">{{$commentCount}} bình luận</h2>
                                         <ol class="commentlist">
                                             <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-20">
                                                 <div id="comment-20" class="comment_container">
-                                                    <img alt="" src="{{asset('assets')}}/images/author-avata.jpg" height="80" width="80">
+                                                    @foreach ($comments as $comment)
+                                                    <img alt="" src="{{asset('assets')}}/images/custom/default_user_ava.png" height="80" width="80">
                                                     <div class="comment-text">
-                                                        <div class="star-rating">
+                                                        {{-- <div class="star-rating">
                                                             <span class="width-80-percent">Rated <strong class="rating">5</strong> out of 5</span>
-                                                        </div>
+                                                        </div> --}}
                                                         <p class="meta">
-                                                            <strong class="woocommerce-review__author">admin</strong>
+                                                            <strong class="woocommerce-review__author">{{ $comment->name }}</strong>
                                                             <span class="woocommerce-review__dash">–</span>
-                                                            <time class="woocommerce-review__published-date" datetime="2008-02-14 20:00" >Tue, Aug 15,  2017</time>
+                                                            <time class="woocommerce-review__published-date" datetime="{{ $comment->created_at }}">{{ $comment->created_at->format('Y.m.d') }}</time>
                                                         </p>
                                                         <div class="description">
-                                                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+                                                            <p>{{$comment->content}}</p>
                                                         </div>
                                                     </div>
+                                                    @endforeach
                                                 </div>
                                             </li>
                                         </ol>
@@ -165,9 +168,9 @@
 
                                                 <form action="#" method="post" id="commentform" class="comment-form" novalidate="">
                                                     <p class="comment-notes">
-                                                        <span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span>
+                                                        bạn cần đăng nhập để có thể bình luận!<span class="required"></span>
                                                     </p>
-                                                    <div class="comment-form-rating">
+                                                    {{-- <div class="comment-form-rating">
                                                         <span>Your rating</span>
                                                         <p class="stars">
 
@@ -182,22 +185,23 @@
                                                             <label for="rated-5"></label>
                                                             <input type="radio" id="rated-5" name="rating" value="5" checked="checked">
                                                         </p>
-                                                    </div>
-                                                    <p class="comment-form-author">
-                                                        <label for="author">Name <span class="required">*</span></label>
+                                                    </div> --}}
+                                                    {{-- <p class="comment-form-author">
+                                                        <label for="author">Tên <span class="required">*</span></label>
                                                         <input id="author" name="author" type="text" value="">
-                                                    </p>
-                                                    <p class="comment-form-email">
+
+                                                    </p> --}}
+                                                    {{-- <p class="comment-form-email">
                                                         <label for="email">Email <span class="required">*</span></label>
                                                         <input id="email" name="email" type="email" value="" >
-                                                    </p>
+                                                    </p> --}}
                                                     <p class="comment-form-comment">
-                                                        <label for="comment">Your review <span class="required">*</span>
+                                                        <label for="comment">Bình luận của bạn <span class="required"></span>
                                                         </label>
                                                         <textarea id="comment" name="comment" cols="45" rows="8"></textarea>
                                                     </p>
                                                     <p class="form-submit">
-                                                        <input name="submit" type="submit" id="submit" class="submit" value="Submit">
+                                                        <input name="submit" type="submit" id="submit" class="submit" value="đăng">
                                                     </p>
                                                 </form>
 
@@ -221,8 +225,8 @@
                                 <a class="link-to-service" href="#">
                                     <i class="fa fa-truck" aria-hidden="true"></i>
                                     <div class="right-content">
-                                        <b class="title">Free Shipping</b>
-                                        <span class="subtitle">On Oder Over $99</span>
+                                        <b class="title">Giao hàng miễn phí!</b>
+                                        <span class="subtitle">cho những sản phẩm trên 20tr</span>
                                         <p class="desc">Lorem Ipsum is simply dummy text of the printing...</p>
                                     </div>
                                 </a>

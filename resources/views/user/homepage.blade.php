@@ -1,5 +1,10 @@
 @extends('user.layouts.app')
 @section('content')
+<script>
+    function truncate(str, n){
+        return (str.length > n) ? str.substr(0, n-1) + '&hellip;' : str;
+    };
+</script>
     <main id="main">
         <div class="container">
 
@@ -74,13 +79,13 @@
                                     <span class="flash-item sale-label">sale</span>
                                 </div>
                                 <div class="wrap-btn">
-                                    <a href="#" class="function-link">quick view</a>
+                                    <a href="{{ route('product_detail', ['id'=>$salelist->id]) }}" class="function-link">quick view</a>
                                 </div>
                             </div>
                             <div class="product-info">
-                                <a href="#" class="product-name"><span>{{ $salelist->name }}</span></a>
+                                <a href="{{ route('product_detail', ['id'=>$salelist->id]) }}" class="product-name"><span>{{ \Illuminate\Support\Str::limit($salelist->name , 25, $end='...') }}</span></a>
                                 <div class="wrap-price"><span class="product-price"><span
-                                            style="text-decoration: line-through">Giá:&nbsp; <?php echo number_format($salelist->price, -3, ',', ',') . ' VND'; ?>&#8363;</span>
+                                            style="text-decoration: line-through">Giá:&nbsp; <?php echo number_format($salelist->price, -3, ',', ',') . ' VND'; ?>&#8363;</span><br>
                                         <span>Chỉ còn:&nbsp; <?php echo number_format($salelist->sale_price, -3, ',', ',') . ' VND'; ?></span></span></div>
                             </div>
                         </div>
@@ -119,7 +124,7 @@
                                     <div class="product product-style-2 equal-elem " style="position: absolutely">
                                         <div class="product-thumnail"
                                             style="display: inline-block; width: 213px; height: 213px;">
-                                            <a href="detail.html" title="{{ $PID->name }}">
+                                            <a href="{{ route('product_detail', ['id'=>$PID->id]) }}" title="{{ $PID->name }}">
                                                 <figure><img src="{{ asset($PID->url) }}" width="800" height="800"
                                                         alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                                             </a>
@@ -131,7 +136,7 @@
                                             </div>
                                         </div>
                                         <div class="product-info">
-                                            <a href="#" class="product-name"><span>{{ $PID->name }}</span></a>
+                                            <a href="{{ route('product_detail', ['id'=>$PID->id]) }}" class="product-name"><span>{{ \Illuminate\Support\Str::limit($PID->name , 25, $end='...') }}</span></a>
                                             <div class="wrap-price" style="position: relative; bottom: 10px">
                                                 @if ($PID->start_date == null)
                                                     <div class="wrap-price"><span
@@ -194,7 +199,7 @@
                                     <div class="product product-style-2 equal-elem ">
                                         <div class="product-thumnail"
                                             style="display: inline-block; width: 213px; height: 213px;">
-                                            <a href="detail.html" title="{{ $product->name }}">
+                                            <a href="{{ route('product_detail', ['id'=>$product->id]) }}" title="{{ $product->name }}">
                                                 <figure><img src="{{ asset($product->url) }}" width="800"
                                                         height="800"></figure>
                                             </a>
@@ -202,11 +207,11 @@
                                                 <span class="flash-item new-label">new</span>
                                             </div>
                                             <div class="wrap-btn">
-                                                <a href="#" class="function-link">quick view</a>
+                                                <a href="{{ route('product_detail', ['id'=>$product->id]) }}" class="function-link">quick view</a>
                                             </div>
                                         </div>
                                         <div class="product-info">
-                                            <a href="#" class="product-name"><span>{{ $product->name }}</span></a>
+                                            <a href="{{ route('product_detail', ['id'=>$product->id]) }}" class="product-name"><span>{{ \Illuminate\Support\Str::limit($product->name , 25, $end='...') }}</span></a>
                                             <div class="wrap-price">
                                                 @if ($product->start_date == null)
                                                 <div class="wrap-price"><span class="product-price">Giá:&nbsp; <?php  echo number_format($product->price,-3,',',',') . ' VND'; ?>&#8363;</span></div>
@@ -232,7 +237,7 @@
                                             <div class="product product-style-2 equal-elem ">
                                                 <div class="product-thumnail"
                                                     style="display: inline-block; width: 213px; height: 213px;">
-                                                    <a href="detail.html" title="{{ $product->name }}">
+                                                    <a href="{{ route('product_detail', ['id'=>$product->id]) }}" title="{{ $product->name }}">
                                                         <figure><img src="{{ asset($product->url) }}" width="800"
                                                                 height="800"></figure>
                                                     </a>
@@ -240,12 +245,12 @@
                                                         <span class="flash-item new-label">new</span>
                                                     </div>
                                                     <div class="wrap-btn">
-                                                        <a href="#" class="function-link">quick view</a>
+                                                        <a href="{{ route('product_detail', ['id'=>$product->id]) }}" class="function-link">quick view</a>
                                                     </div>
                                                 </div>
                                                 <div class="product-info">
-                                                    <a href="#"
-                                                        class="product-name"><span>{{ $product->name }}</span></a>
+                                                    <a href="{{ route('product_detail', ['id'=>$product->id]) }}"
+                                                        class="product-name"><span>{{ \Illuminate\Support\Str::limit($product->name , 25, $end='...') }}</span></a>
                                                     <div class="wrap-price">
                                                         @if ($product->start_date == null)
                                                         <div class="wrap-price"><span class="product-price">Giá:&nbsp;<?php  echo number_format($product->price,-3,',',',') . ' VND'; ?>&#8363;</span></div>
