@@ -270,7 +270,7 @@
                         </div>
                     </div><!-- Price-->
 
-                    <div class="widget mercado-widget filter-widget">
+                    {{-- <div class="widget mercado-widget filter-widget">
                         <h2 class="widget-title">Color</h2>
                         <div class="widget-content">
                             <ul class="list-style vertical-list has-count-index">
@@ -381,7 +381,7 @@
 
                             </ul>
                         </div>
-                    </div><!-- brand widget-->
+                    </div><!-- brand widget--> --}}
 
                 </div>
                 <!--end sitebar-->
@@ -472,7 +472,7 @@
             });
         });
 
-        function fetch_page(row = 10, searchbar = '', catId = '', brand = '', sort = 'default', min = '', max = '', page = 1) {
+        function fetch_page(row = 3, searchbar = '', catId = '', brand = '', sort = 'default', min = '', max = '', page = 1) {
             let url =
                 `{{ route('shoppage') }}?row=${row}&searchbar=${searchbar}&catlist=${catId}&brand=${brand}&sort=${sort}&min=${min}&max=${max}&page=${page}`;
             $.ajax({

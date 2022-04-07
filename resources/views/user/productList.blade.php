@@ -10,7 +10,7 @@
                 </div>
                 <div class="product-info">
                     <a href="{{ route('product_detail', ['id'=>$pd->id]) }}" class="product-name"
-                        style="display: block; height: 36px;"><span>{{ $pd->name }}</span></a>
+                        style="display: block; height: 36px;"><span>{{ \Illuminate\Support\Str::limit($pd->name , 25, $end='...') }}</span></a>
                         @if ($pd->start_date == null)
                             <div class="wrap-price"><span class="product-price">Giá:&nbsp;<?php  echo number_format($pd->price,-3,',',',') . ' VND'; ?>&#8363;</span></div>
                         @else

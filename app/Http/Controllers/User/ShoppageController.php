@@ -16,10 +16,11 @@ class ShoppageController extends Controller
 
     public function index(Request $request)
     {
+        $rowPerPage = 3;
         if($request->ajax()){
-            return $this->search($request,10);
+            return $this->search($request,$rowPerPage);
         }
-        return $this->getStaticDataForView($request,10);
+        return $this->getStaticDataForView($request,$rowPerPage);
         // $search = $request->get('search');
         // $catId = $request->get('cat');
         // if ($catId != '') {
