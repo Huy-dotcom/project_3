@@ -121,11 +121,14 @@ class ProductController extends Controller
         $product->name = $request->name;
         if ($request->type == 0) {
             $product->price = $request->price;
+            $product->sale_price = 0;
+            $product->start_date = null;
+            $product->end_date = null;
         } else {
             $product->price = $request->price;
             $product->sale_price = $request->price_sale;
-            $product->start_date = $product->start_date;
-            $product->end_date = $product->end_date;
+            $product->start_date = $request->start_date;
+            $product->end_date = $request->end_date;
         }
         $product->category_id = $request->category_id;
         $product->brand_id = $request->brand_id;

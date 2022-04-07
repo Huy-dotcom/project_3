@@ -31,11 +31,11 @@
             </div>
             <div class="form-group" id="start_date_container">
                 <label for="start_date">Thời gian bắt đầu: <span class="text-danger">*</span></label>
-                <input type="date" class="form-control" id="start_date" name="start_date" min="{{ date('Y-m-d') }}" required>
+                <input type="date" class="form-control" id="start_date" name="start_date" required>
             </div>
             <div class="form-group" id="end_date_container">
                 <label for="end_date">Thời gian kết thúc: <span class="text-danger">*</span></label>
-                <input type="date" class="form-control" id="end_date" name="end_date" min="{{ date('Y-m-d') }}" required>
+                <input type="date" class="form-control" id="end_date" name="end_date" required>
             </div>
             <div class="form-group">
                 <label for="qty">Số lượng: <span class="text-danger">*</span></label>
@@ -80,7 +80,7 @@
                 <span class="image-preview__default-text">Hình ảnh</span>
             </div>
             <br />
-            <button type="submit" class="btn btn-primary" onclick="return checkPrice();">Thêm</button>
+            <button type="submit" class="btn btn-primary" onclick="return validate();">Thêm</button>
           </form>
     </div>
 </div>

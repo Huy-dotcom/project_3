@@ -25,20 +25,22 @@
                 <label for="price">Giá tiền: <span class="text-danger">*</span></label>
                 <input type="number" class="form-control" placeholder="Nhập giá tiền" id="price" name="price" value="{{ $product->price }}" min=1 required>
             </div>
-            @if ($product->type == 1)
-                <div class="form-group" id="price_sale_container">
-                    <label for="price_sale">Giá khuyến mãi: <span class="text-danger">*</span></label>
-                    <input type="number" class="form-control" placeholder="Nhập giá tiền" id="price_sale" name="price_sale" value="{{ $product->sale_price != 0 ? $product->sale_price : '' }}" min=1 required>
-                </div>
-                <div class="form-group" id="start_date_container">
-                    <label for="start_date">Thời gian bắt đầu: <span class="text-danger">*</span></label>
-                    <input type="date" class="form-control" id="start_date" name="start_date" min="{{ date('Y-m-d') }}" value="{{ $product->start_date != null ? $product->start_date : '' }}" required>
-                </div>
-                <div class="form-group" id="end_date_container">
-                    <label for="end_date">Thời gian kết thúc: <span class="text-danger">*</span></label>
-                    <input type="date" class="form-control" id="end_date" name="end_date" min="{{ date('Y-m-d') }}" value="{{ $product->end_date != null ? $product->end_date : '' }}" required>
-                </div>
-            @endif
+            <div id="product_sale_container">
+                @if ($product->type == 1)
+                    <div class="form-group" id="price_sale_container">
+                        <label for="price_sale">Giá khuyến mãi: <span class="text-danger">*</span></label>
+                        <input type="number" class="form-control" placeholder="Nhập giá tiền" id="price_sale" name="price_sale" value="{{ $product->sale_price != 0 ? $product->sale_price : '' }}" min=1 required>
+                    </div>
+                    <div class="form-group" id="start_date_container">
+                        <label for="start_date">Thời gian bắt đầu: <span class="text-danger">*</span></label>
+                        <input type="date" class="form-control" id="start_date" name="start_date" value="{{ $product->start_date != null ? $product->start_date : '' }}" required>
+                    </div>
+                    <div class="form-group" id="end_date_container">
+                        <label for="end_date">Thời gian kết thúc: <span class="text-danger">*</span></label>
+                        <input type="date" class="form-control" id="end_date" name="end_date" value="{{ $product->end_date != null ? $product->end_date : '' }}" required>
+                    </div>
+                @endif
+            </div>
             <div class="form-group">
                 <label for="qty">Số lượng: <span class="text-danger">*</span></label>
                 <input type="number" class="form-control" placeholder="Nhập số lượng" id="qty" name="qty" value="{{ $product->qty }}" min=1 required>
@@ -82,7 +84,7 @@
                 <span class="image-preview__default-text" style="display:none;">Hình ảnh</span>
             </div>
             <br />
-            <button type="submit" class="btn btn-primary" onclick="return checkPrice();">Cập nhật</button>
+            <button type="submit" class="btn btn-primary" onclick="return validate();">Cập nhật</button>
           </form>
     </div>
 </div>

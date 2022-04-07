@@ -225,27 +225,74 @@
                     $('#start_date_container').hide();
                     $('#end_date_container').hide();
                 } else {
-                    $('#price_sale').prop('required',true);
-                    $('#start_date').prop('required',true);
-                    $('#end_date').prop('required',true);
-                    $('#price_sale_container').show();
-                    $('#start_date_container').show();
-                    $('#end_date_container').show();
+                    if (type == 1) {
+                        var html = `
+                            <div class="form-group" id="price_sale_container">
+                                <label for="price_sale">Giá khuyến mãi: <span class="text-danger">*</span></label>
+                                <input type="number" class="form-control" placeholder="Nhập giá tiền" id="price_sale" name="price_sale" min=1 required>
+                            </div>
+                            <div class="form-group" id="start_date_container">
+                                <label for="start_date">Thời gian bắt đầu: <span class="text-danger">*</span></label>
+                                <input type="date" class="form-control" id="start_date" name="start_date" required>
+                            </div>
+                            <div class="form-group" id="end_date_container">
+                                <label for="end_date">Thời gian kết thúc: <span class="text-danger">*</span></label>
+                                <input type="date" class="form-control" id="end_date" name="end_date" required>
+                            </div>
+                        `;
+                        if ($('#product_sale_container').children().length <= 0) {
+                            $('#product_sale_container').html(html);
+                        }
+                        $('#price_sale').prop('required',true);
+                        $('#start_date').prop('required',true);
+                        $('#end_date').prop('required',true);
+                        $('#price_sale_container').show();
+                        $('#start_date_container').show();
+                        $('#end_date_container').show();
+                    }
                 }
             });
         });
 
-        function checkPrice()
+        function validate()
         {
             var type = $('#type').val();
             var price = $('#price').val();
+            var start_date = $('#start_date').val();
+            var end_date = $('#end_date').val();
             var sale_price = $('#price_sale').val();
+            var date = new Date();
+            var month = '' + (date.getMonth() + 1);
+            var day = '' + date.getDate();
+            var year = date.getFullYear();
+            if (month.length < 2) {
+                month = '0' + month;
+            }
+            if (day.length < 2) {
+                day = '0' + day;
+            }
+
+            var today_date = [year, month, day].join('-');
+            
             if (type == 1) {
                 if (sale_price >= price) {
                     alert('Giá tiền phải lớn hơn giá khuyến mãi');
                     return false;
                 }
             }
+
+            if (type == 1) {
+                if (start_date < today_date || end_date < today_date) {
+                    alert('Ngày bắt đầu và ngày kết thúc không được nhỏ hơn ngày hôm nay');
+                    return false;
+                } else {
+                    if (start_date > end_date) {
+                        alert('Ngày bắt đầu phải nhỏ hơn ngày kết thúc');
+                        return false;
+                    }
+                }
+            }
+
             return true;
         }
     </script>
