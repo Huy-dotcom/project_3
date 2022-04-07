@@ -37,7 +37,7 @@
                     <th>Giá khuyến mãi</th>
                     <td>
                         @php
-                            if ($product->sale_price != 0) {
+                            if ($product->sale_price != 0 && $product->type == 1) {
                                 echo number_format($product->sale_price,-3,',',',') . ' VND';
                             } else {
                                 echo 'N/A';
@@ -49,7 +49,7 @@
                     <th>Thời gian bắt đầu</th>
                     <td>
                         @php
-                            if (!is_null($product->start_date)) {
+                            if (!is_null($product->start_date) && $product->type == 1) {
                                 echo date('d/m/Y', strtotime($product->start_date));
                             } else {
                                 echo 'N/A';
@@ -61,7 +61,7 @@
                     <th>Thời gian kết thúc</th>
                     <td>
                         @php
-                            if (!is_null($product->end_date)) {
+                            if (!is_null($product->end_date) && $product->type == 1) {
                                 echo date('d/m/Y', strtotime($product->end_date));
                             } else {
                                 echo 'N/A';
