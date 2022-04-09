@@ -63,6 +63,7 @@ class ShoppageController extends Controller
     }
     public function search($request, $rowPerPage)
     {
+
         // dd($request->catlist);
         // query builder
         $query = Product::select('*');

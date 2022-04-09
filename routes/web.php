@@ -4,6 +4,7 @@ use App\Http\Controllers\User\AuthController;
 use App\Http\Controllers\User\HomepageController;
 use App\Http\Controllers\user\ProductDetailController;
 use App\Http\Controllers\user\ShoppageController;
+use App\Http\Controllers\user\CartController;
 use App\Http\Middleware\CheckUserLoginMiddleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -147,3 +148,10 @@ Route::post('user/signupprocess',[AuthController::class, 'signUpProcess'])->name
 
 Route::get('/detail/{id}',[ProductDetailController::class, 'index'])->name('product_detail');
 
+Route::get('/cart',[CartController::class, 'index'])->name('cart');
+
+Route::get('/addToCart',[CartController::class, 'addToCart'])->name('add_to_cart');
+
+Route::get('/deleteCartItem/{id}',[CartController::class, 'delete_cart_item'])->name('delete_cart_item');
+
+Route::get('updateCart',[CartController::class, 'update_cart_item'])->name('update_cart');

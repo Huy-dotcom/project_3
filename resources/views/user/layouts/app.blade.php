@@ -17,16 +17,6 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('assets')}}/css/style.css">
 	<link rel="stylesheet" type="text/css" href="{{asset('assets')}}/css/color-01.css">
 </head>
-<body class="home-page home-01 ">
-
-	<!-- mobile menu -->
-    <div class="mercado-clone-wrap">
-        <div class="mercado-panels-actions-wrap">
-            <a class="mercado-close-btn mercado-close-panels" href="#">x</a>
-        </div>
-        <div class="mercado-panels"></div>
-    </div>
-
 	<!--header-->
 	@include('user.layouts.header')
 

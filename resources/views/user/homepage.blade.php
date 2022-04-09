@@ -1,10 +1,20 @@
 @extends('user.layouts.app')
 @section('content')
-<script>
-    function truncate(str, n){
-        return (str.length > n) ? str.substr(0, n-1) + '&hellip;' : str;
-    };
-</script>
+
+<body class="home-page home-01 ">
+    <script>
+        function truncate(str, n){
+            return (str.length > n) ? str.substr(0, n-1) + '&hellip;' : str;
+        };
+    </script>
+	<!-- mobile menu -->
+    <div class="mercado-clone-wrap">
+        <div class="mercado-panels-actions-wrap">
+            <a class="mercado-close-btn mercado-close-panels" href="#">x</a>
+        </div>
+        <div class="mercado-panels"></div>
+    </div>
+
     <main id="main">
         <div class="container">
 
@@ -15,33 +25,31 @@
                     <div class="item-slide">
                         <img src="{{ asset('assets') }}/images/custom/banner6.jpg" alt="" class="img-slide">
                         <div class="slide-info slide-1">
-                            <h2 class="f-title" style="color: white">High tech <b style="color: white">Computer</b>
+                            <h2 class="f-title" style="color: white">Máy tính <b style="color: rgb(187, 255, 0)">Công nghệ cao</b>
                             </h2>
-                            <span class="subtitle" style="color: white">gamming, programing,.. all in one!.</span>
-                            <p class="sale-info" style="color: white">Only for: <span
-                                    class="price">$59.99</span></p>
-                            <a href="#" class="btn-link">Shop Now</a>
+                            <span class="subtitle" style="color: rgba(30, 230, 187, 0.733)">Chơi game, lập trình đồ họa,.. đều dễ dàng thực hiện.</span>
+                            <p class="sale-info" style="color: rgb(30, 230, 187)">Mức giá hợp lý
+                                {{-- <span class="price">$59.99</span></p> --}}
+                            <a href="{{ route('shoppage') }}" class="btn-link">Mua ngay</a>
                         </div>
                     </div>
                     <div class="item-slide">
                         <img src="{{ asset('assets') }}/images/custom/banner7.webp" alt="" class="img-slide">
                         <div class="slide-info slide-2">
-                            <h2 class="f-title">Extra 25% Off</h2>
-                            <span class="f-subtitle" style="color: white">On online payments</span>
-                            <p class="discount-code">Use Code: #FA6868</p>
-                            <h4 class="s-title" style="color: lawngreen">Get Free</h4>
-                            <p class="s-subtitle">With only $3 per mounth for installment!</p>
+                            <h2 class="f-title">sale tới&nbsp;25%</h2>
+                            <span class="f-subtitle" style="color: white">Khi thanh toán online</span>
+                            <p class="discount-code">#FA6868</p>
+                            <h4 class="s-title" style="color: lawngreen">Nhập ngay</h4>
+                            <p class="s-subtitle">Để được giảm thêm 3%</p>
                         </div>
                     </div>
                     <div class="item-slide">
                         <img src="{{ asset('assets') }}/images/custom/banner8.jpg" alt="" class="img-slide">
                         <div class="slide-info slide-3">
-                            <h2 class="f-title" style="color: white">The ultimate <b style="color: red">Exclusive
-                                    mini gaming PC</b></h2>
-                            <span class="f-subtitle" style="color: cornsilk">Light and small, easy to install, powerful
-                                core.</span>
-                            <p class="sale-info">Stating at: <b class="price">$225.00</b></p>
-                            <a href="#" class="btn-link">Shop Now</a>
+                            <h2 class="f-title" style="color: white">đa dạng<b style="color: red">linh kiện máy tính</b></h2>
+                            <span class="f-subtitle" style="color: cornsilk">từ nhiều thương hiệu nổi tiếng</span>
+                            <p class="sale-info">chỉ từ<b class="price">10,000 VND</b></p>
+                            <a href="#" class="btn-link">Mua ngay</a>
                         </div>
                     </div>
                 </div>
@@ -72,7 +80,7 @@
                     @foreach ($saleList as $salelist)
                         <div class="product product-style-2 equal-elem ">
                             <div class="product-thumnail" style="display: inline-block; width: 213px; height: 213px;">
-                                <a href="detail.html" title="{{ $salelist->name }}">
+                                <a href="{{ route('product_detail', ['id'=>$salelist->id]) }}" title="{{ $salelist->name }}">
                                     <figure><img src="{{ asset($salelist->url) }}" width="800" height="800"></figure>
                                 </a>
                                 <div class="group-flash">
