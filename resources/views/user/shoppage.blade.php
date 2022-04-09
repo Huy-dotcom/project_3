@@ -2,6 +2,15 @@
 @extends('user.layouts.app')
 
 @section('content')
+<body class="home-page home-01 ">
+
+	<!-- mobile menu -->
+    <div class="mercado-clone-wrap">
+        <div class="mercado-panels-actions-wrap">
+            <a class="mercado-close-btn mercado-close-panels" href="#">x</a>
+        </div>
+        <div class="mercado-panels"></div>
+    </div>
     <style>
         .wrapper {
             width: 100%;
@@ -23,7 +32,7 @@
         }
 
         .field input {
-            width: 100%;
+            width: 50px;
             height: 100%;
             margin-left: 12px;
             border: 1px solid #999;
@@ -247,23 +256,25 @@
                             <div class="wrapper">
                                 <div class="price-input">
                                     <div class="field">
-                                        <span>từ</span>
+                                        <span></span>
                                         <input type="number" id="min" class="input-min" value="0">
+                                        <h5>Tr</h5>
                                     </div>
                                     <div class="separator">-</div>
                                     <div class="field">
-                                        <span>đến</span>
-                                        <input type="number" id="max" class="input-max" value="50000000">
+                                        <span></span>
+                                        <input type="number" id="max" class="input-max" value="50">
+                                        <h5>Tr</h5>
                                     </div>
                                 </div>
                                 <div class="slider-bar">
                                     <div class="progress"></div>
                                 </div>
                                 <div class="range-input">
-                                    <input type="range" class="range-min" min="0" max="50000000" value="0"
-                                        step="100000">
-                                    <input type="range" class="range-max" min="0" max="50000000" value="50000000"
-                                        step="100000">
+                                    <input type="range" class="range-min" min="0" max="50" value="0"
+                                        step="1">
+                                    <input type="range" class="range-max" min="0" max="50" value="50"
+                                        step="1">
                                 </div>
                             </div>
                             <button class="filter-submit" id="price-filter">lọc</button>
@@ -394,7 +405,7 @@
 
     </main>
     <script>
-        let priceGap = 1000000;
+        let priceGap = 1;
         const rangeInput = document.querySelectorAll(".range-input input"),
             priceInput = document.querySelectorAll(".price-input input"),
             progress = document.querySelector(".slider-bar .progress");
@@ -404,7 +415,7 @@
                 let minVal = parseInt(priceInput[0].value),
                     maxVal = parseInt(priceInput[1].value);
 
-                if ((maxVal - minVal >= priceGap) && maxVal < 50000000) {
+                if ((maxVal - minVal >= priceGap) && maxVal < 50) {
                     if (e.target.className === "input-min") {
                         rangeInput[0].value = minVal;
                         progress.style.left = (minVal / rangeInput[0].max) * 100 + "%";
@@ -499,8 +510,8 @@
                 params.has('cat') ? params.get('cat') : $('#cat-list').val(),
                 $('#brand-list').val(),
                 $('#product-sort-list').val(),
-                $('#min').val(),
-                $('#max').val()
+                $('#min').val()+'000000',
+                $('#max').val()+'000000'
             ];
         }
         // function get_search() {
