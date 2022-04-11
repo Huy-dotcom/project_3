@@ -17,11 +17,16 @@ class CartController extends Controller
         // $request->session()->forget('product_id');
         // session()->put('product_id',);
         // session()->forget('cart');
-        if (!session()->has('cart')){
-            $cart = session()->put('cart',[]);
+
+        if (!session()->has('cart') ){
+            session()->put('cart',[]);
+            $cart = session()->get('cart');
         }else{
              $cart = session()->get('cart');
         }
+        // dd(Session()->get('cart'));
+        //
+        // return dd($cart);
         // $products = Product::whereIn('id', (array)$ids)->paginate(5);
         return view('user.cart',[
             'cart'=> $cart,
@@ -59,8 +64,8 @@ class CartController extends Controller
         // $userId = Session::get('user_id');
 
         if(!session()->has('cart')){
-            // session()->put('cart',[]);
-            session()->put('cart',[
+            session()->put('cart',[]);
+            session()->push('cart',[
                 'p_id'=>$p_id,
                 'p_price'=>$p_price,
                 'p_qty'=>$p_qty,
@@ -82,6 +87,9 @@ class CartController extends Controller
     //     ]);
 
     // $request->session()->forget('cart');
+        if($request->ajax()){
+            return response();
+        }
         return redirect()->back()->with('notice','đã thêm vào giỏ!');
         // return print_r(session()->get('cart'));
         // return $p_url;
@@ -132,6 +140,42 @@ class CartController extends Controller
         $cart = array_values($cart);
         session()->put('cart',$cart);
         return redirect()->back()->with('notice','cập nhật thành công!');
+
+    }
+    public function addToCartByAjax(Request $request){
+
+        $p_id = $request->get('id');
+
+        $p_price = $request->get('price');
+        $p_qty = $request->get('qty');
+        $p_name = $request->get('name');
+        $p_url = $request->get('img');
+            // dd($request->all());
+        // session()->put('product_id',[$id]);
+
+        // session()->push('product_id',$id);
+
+        // $userId = Session::get('user_id');
+
+        if(!session()->has('cart')){
+            // session()->put('cart',[]);
+            session()->put('cart',[
+                'p_id'=>$p_id,
+                'p_price'=>$p_price,
+                'p_qty'=>$p_qty,
+                'p_name'=>$p_name,
+                'p_url'=>$p_url
+            ]);
+        }else{
+            session()->push('cart',[
+                'p_id'=>$p_id,
+                'p_price'=>$p_price,
+                'p_qty'=>$p_qty,
+                'p_name'=>$p_name,
+                'p_url'=>$p_url
+            ]);
+       }
+        return response()->json(['status'=>'Thêm thành công']);
 
     }
 }

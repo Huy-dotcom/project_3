@@ -1,3 +1,6 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @extends('user.layouts.app')
 @section('content')
     <main id="main" class="main-site">
@@ -14,6 +17,7 @@
 
                 <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 main-content-area">
                     <div class="wrap-product-detail">
+
                         <div class="detail-media">
                             <div class="product-gallery">
                                 <img src="{{ asset($productDetail->url) }}" alt="product thumbnail" />
@@ -89,17 +93,17 @@
                             <div class="stock-info in-stock">
                                 <p class="availability">Số dư: <b>{{ $productDetail->qty }}</b></p>
                             </div>
-                            <form action="{{ route('add_to_cart') }}" method="GET">
-                                <input type="hidden" name="price"
+                            {{-- <form action="{{ route('add_to_cart') }}" method="GET"> --}}
+                                <input type="hidden" class="p_price"
                                     value="{{ isset($productDetail->start_date) ? $productDetail->sale_price : $productDetail->price }}">
-                                <input type="hidden" name="id" value="{{ $productDetail->id }}">
-                                <input type="hidden" name="name" value="{{ $productDetail->name }}">
-                                <input type="hidden" name="url" value="{{ $productDetail->url }}">
+                                <input type="hidden" class="p_id" value="{{ $productDetail->id }}">
+                                <input type="hidden" class="p_name" value="{{ $productDetail->name }}">
+                                <input type="hidden" class="p_img" value="{{ $productDetail->url }}">
                                 <div class="quantity">
 
                                     <span>Số lượng đặt:</span>
                                     <div class="quantity-input">
-                                        <input type="text" name="product-quatity" value="1"
+                                        <input type="text" class="p_qty" name="product-quatity" value="1"
                                             data-max="{{ $productDetail->qty }}" pattern="[0-9]*">
 
                                         <a class="btn btn-reduce" href="#"></a>
@@ -107,14 +111,15 @@
                                     </div>
                                 </div>
                                 <div class="wrap-butons">
-                                    <a type="submit" onclick="this.closest('form').submit();return false;"
-                                        class="btn add-to-cart">Thêm vào giỏ</a>
+                                    {{-- <a type="submit" onclick="this.closest('form').submit();return false;"
+                                        class="btn add-to-cart">Thêm vào giỏ</a> --}}
+                                    <button class="btn_addtocart">thêm vào giỏ</button>
                                     {{-- <div class="wrap-btn">
                                     <a href="#" class="btn btn-compare">Add Compare</a>
                                     <a href="#" class="btn btn-wishlist">Add Wishlist</a>
                                     </div> --}}
                                 </div>
-                            </form>
+                            {{-- </form> --}}
                         </div>
                         <div class="advance-info">
                             <div class="tab-control normal">
@@ -518,4 +523,32 @@
         <!--end container-->
 
     </main>
+    <script>
+        $(document).ready(function() {
+                $('.btn_addtocart').click(function(e) {
+                    e.preventDefault();
+                    var p_id = $(this).closest('.wrap-product-detail').find('.p_id').val();
+                    var p_name = $(this).closest('.wrap-product-detail').find('.p_name').val();
+                    var p_qty = $(this).closest('.wrap-product-detail').find('.p_qty').val();
+                    var p_img = $(this).closest('.wrap-product-detail').find('.p_img').val();
+                    var p_price = $(this).closest('.wrap-product-detail').find('.p_price').val();
+                    data = {
+                        'id' : p_id,
+                        'name' : p_name,
+                        'product-quatity' : p_qty,
+                        'url' : p_img,
+                        'price' : p_price,
+                    };
+                    $.ajax({
+                        type: "GET",
+                        url: "{{route('add_to_cart')}}",
+                        data: data,
+                        success: function(response) {
+                            alert('Thêm thành công')
+                        }
+                    });
+
+                });
+            });
+    </script>
 @endsection

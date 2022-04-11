@@ -155,3 +155,5 @@ Route::get('/addToCart',[CartController::class, 'addToCart'])->name('add_to_cart
 Route::get('/deleteCartItem/{id}',[CartController::class, 'delete_cart_item'])->name('delete_cart_item');
 
 Route::get('updateCart',[CartController::class, 'update_cart_item'])->name('update_cart');
+
+Route::get('addToCartByAjax',[CartController::class, 'addToCartByAjax'])->name('add_to_cart_by_ajax');

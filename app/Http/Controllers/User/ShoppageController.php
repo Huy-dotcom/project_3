@@ -16,7 +16,8 @@ class ShoppageController extends Controller
 
     public function index(Request $request)
     {
-        $rowPerPage = 3;
+        // session()->forget('cart');
+        $rowPerPage = 100;
         if($request->ajax()){
             return $this->search($request,$rowPerPage);
         }
@@ -104,6 +105,7 @@ class ShoppageController extends Controller
 
         // get list of assign match with key
         $product = $query->paginate($rowPerPage);
+        // dd($product);
         $html = view('user.productList')
                 ->with(['product' => $product])
                 ->render();
