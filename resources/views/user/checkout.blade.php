@@ -21,6 +21,7 @@
                     <ul>
                         <li class="item-link"><a href="#" class="link">home</a></li>
                         <li class="item-link"><span>login</span></li>
+                        <li class="item-link"><span>{{ Session::get('notice') }}</span></li>
                     </ul>
                 </div>
                 <div class=" main-content-area">
@@ -150,7 +151,7 @@
                                     <input type="hidden" name="total" value="{{$total}}">
                                 <p class="summary-info grand-total"><span>Tổng cộng:</span> <span
                                         class="grand-total-price"><?php echo number_format($total, -3, ',', ',') . ' VND'; ?></span></p>
-                                <a onclick="this.closest('form').submit();return false;" class="btn btn-medium">Xác nhận</a>
+                                <button type="submit">xác nhận</button>
                                 {{-- </form> --}}
                             </div>
                             <div class="summary-item shipping-method">

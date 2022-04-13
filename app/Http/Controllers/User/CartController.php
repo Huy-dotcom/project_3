@@ -142,40 +142,40 @@ class CartController extends Controller
         return redirect()->back()->with('notice','cập nhật thành công!');
 
     }
-    public function addToCartByAjax(Request $request){
+    // public function addToCartByAjax(Request $request){
 
-        $p_id = $request->get('id');
+    //     $p_id = $request->get('id');
 
-        $p_price = $request->get('price');
-        $p_qty = $request->get('qty');
-        $p_name = $request->get('name');
-        $p_url = $request->get('img');
-            // dd($request->all());
-        // session()->put('product_id',[$id]);
+    //     $p_price = $request->get('price');
+    //     $p_qty = $request->get('qty');
+    //     $p_name = $request->get('name');
+    //     $p_url = $request->get('img');
+    //         // dd($request->all());
+    //     // session()->put('product_id',[$id]);
 
-        // session()->push('product_id',$id);
+    //     // session()->push('product_id',$id);
 
-        // $userId = Session::get('user_id');
+    //     // $userId = Session::get('user_id');
 
-        if(!session()->has('cart')){
-            // session()->put('cart',[]);
-            session()->put('cart',[
-                'p_id'=>$p_id,
-                'p_price'=>$p_price,
-                'p_qty'=>$p_qty,
-                'p_name'=>$p_name,
-                'p_url'=>$p_url
-            ]);
-        }else{
-            session()->push('cart',[
-                'p_id'=>$p_id,
-                'p_price'=>$p_price,
-                'p_qty'=>$p_qty,
-                'p_name'=>$p_name,
-                'p_url'=>$p_url
-            ]);
-       }
-        return response()->json(['status'=>'Thêm thành công']);
+    //     if(!session()->has('cart')){
+    //         // session()->put('cart',[]);
+    //         session()->put('cart',[
+    //             'p_id'=>$p_id,
+    //             'p_price'=>$p_price,
+    //             'p_qty'=>$p_qty,
+    //             'p_name'=>$p_name,
+    //             'p_url'=>$p_url
+    //         ]);
+    //     }else{
+    //         session()->push('cart',[
+    //             'p_id'=>$p_id,
+    //             'p_price'=>$p_price,
+    //             'p_qty'=>$p_qty,
+    //             'p_name'=>$p_name,
+    //             'p_url'=>$p_url
+    //         ]);
+    //    }
+    //     return response()->json(['status'=>'Thêm thành công']);
 
-    }
+    // }
 }
