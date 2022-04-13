@@ -42,7 +42,7 @@
         @endforeach
 
     </ul>
+</div>
+<div class="wrap-pagination-info">
     {{ $product->links('pagination::bootstrap-4') }}
-    <br>
-
 </div>

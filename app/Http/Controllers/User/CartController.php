@@ -88,7 +88,7 @@ class CartController extends Controller
 
     // $request->session()->forget('cart');
         if($request->ajax()){
-            return response();
+            return response('Đặt thành công.');
         }
         return redirect()->back()->with('notice','đã thêm vào giỏ!');
         // return print_r(session()->get('cart'));
