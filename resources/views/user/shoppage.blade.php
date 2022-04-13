@@ -519,7 +519,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             });
 
 
-            function fetch_page(row = 3, searchbar = '', catId = '', brand = '', sort = 'default', min = '', max = '', page = 1) {
+            function fetch_page(row = 10, searchbar = '', catId = '', brand = '', sort = 'default', min = '', max = '', page = 1) {
                 let url =
                     `{{ route('shoppage') }}?row=${row}&searchbar=${searchbar}&catlist=${catId}&brand=${brand}&sort=${sort}&min=${min}&max=${max}&page=${page}`;
                 $.ajax({

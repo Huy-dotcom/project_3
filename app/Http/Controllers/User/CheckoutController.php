@@ -127,6 +127,9 @@ class CheckoutController extends Controller
 
         if (session()->has('cart')) {
             $cart = session()->get('cart');
+            if($cart == []){
+                return redirect()->back()->with('notice', 'Giỏ hàng trống');
+            }
             foreach ($cart as $item) {
                 OrderDetail::create([
                     'order_id' => $orderID,
