@@ -15,5 +15,5 @@ class OrderDetail extends Model
      * @var array
      */
     protected $fillable = ['order_id','product_id','qty'];
-    protected $table = "orders_detail";
+    protected $table = "orders_details";
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\user\ShoppageController;
 use App\Http\Controllers\user\CartController;
 use App\Http\Controllers\user\CheckoutController;
 use App\Http\Middleware\CheckUserLoginMiddleware;
+use App\Http\Middleware\CheckUserNotLoginMiddleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -137,8 +138,7 @@ Route::namespace('Admin')->prefix('ad')->group(function () {
 Route::middleware([CheckUserLoginMiddleware::class])->group(function(){
     Route::get('/user/login',[AuthController::class, 'login'])->name('user_login');
     Route::post('/user/loginprocess',[AuthController::class, 'loginProcess'])->name('login_process');
-    Route::get('ckeckout',[CheckoutController::class, 'index'])->name('checkout');
-    Route::get('ckeckout-process',[CheckoutController::class, 'checkoutProcess'])->name('checkout_process');
+
 });
 
 Route::get('/',[HomepageController::class, 'index'])->name('homepage');
@@ -159,4 +159,7 @@ Route::get('/deleteCartItem/{id}',[CartController::class, 'delete_cart_item'])->
 
 Route::get('updateCart',[CartController::class, 'update_cart_item'])->name('update_cart');
 
-
+Route::middleware([CheckUserNotLoginMiddleware::class])->group(function(){
+    Route::get('ckeckout',[CheckoutController::class, 'index'])->name('checkout');
+    Route::get('ckeckout-process',[CheckoutController::class, 'checkoutProcess'])->name('checkout_process');
+});
