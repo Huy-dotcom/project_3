@@ -49,7 +49,7 @@
 
                     <div class="wrap-iten-in-cart">
 
-                        <h3 class="box-title">Tên sản phẩm</h3>
+                        <h3 class="box-title">Danh sách sản phẩm</h3>
                         <ul class="products-cart">
                             @php
                                 $total = 0;
@@ -76,7 +76,7 @@
                                                 <input type="hidden" name="index" value="{{$loop->index}}">
                                                 <input type="text" name="product-quatity"
                                                     value="{{ $cart_item['p_qty'] }}" data-max="10" pattern="[0-9]*">
-                                                <a class="btn btn-increase" href="#"><span style="display:block; width:100%;height:100%">+</span></a>
+                                                <a class="btn btn-increase" href="#"></a>
                                                 <a class="btn btn-reduce" href="#"></a>
                                             </div>
                                             <button type="submit" class="btn-update">cập nhật</button>

@@ -17,7 +17,7 @@ class ShoppageController extends Controller
     public function index(Request $request)
     {
         // session()->forget('cart');
-        $rowPerPage = 100;
+        $rowPerPage = 3;
         if($request->ajax()){
             return $this->search($request,$rowPerPage);
         }

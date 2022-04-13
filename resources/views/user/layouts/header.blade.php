@@ -130,7 +130,7 @@
                                 <a href="{{ route('cart') }}" class="link-term mercado-item-title">Cart</a>
                             </li>
                             <li class="menu-item">
-                                <a href="checkout.html" class="link-term mercado-item-title">Checkout</a>
+                                <a href="{{ route('checkout') }}" class="link-term mercado-item-title">Checkout</a>
                             </li>
                         </ul>
                     </div>

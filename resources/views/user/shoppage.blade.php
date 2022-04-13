@@ -115,7 +115,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                 <div class="wrap-breadcrumb">
                     <ul>
                         <li class="item-link"><a href="{{ route('homepage') }}" class="link">home</a></li>
-                        <li class="item-link"><a href="{{ route('shoppage') }}" class="link">shop</a></li>
+                        <li class="item-link"><a href="{{ route('shoppage') }}" class="link">all</a></li>
                     </ul>
                 </div>
                 <div class="row">
@@ -142,6 +142,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                             </h1>
 
                             <div class="wrap-right">
+
                                 <div class="sort-item orderby ">
                                     <input type="text" name="searchbar" id="searchbar" placeholder="Search here...">
                                     <button id="disable-btn"><i class="fa fa-search" aria-hidden="true"></i></button>
@@ -197,6 +198,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                         <!--end wrap shop control-->
 
                         @include('user.productList')
+
+
                     </div>
 
 
@@ -207,6 +210,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                         <div class="widget mercado-widget categories-widget">
                             <h2 class="widget-title">Danh mục sản phẩm</h2>
                             <div class="widget-content">
+
                                 <ul class="list-category">
                                     @foreach ($category as $cate)
                                         <li class="category-item">
@@ -507,6 +511,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                         url: "addToCart",
                         data: data,
                         success: function(response) {
+                            alert(response);
                         }
                     });
 
@@ -514,7 +519,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             });
 
 
-            function fetch_page(row = 100, searchbar = '', catId = '', brand = '', sort = 'default', min = '', max = '', page = 1) {
+            function fetch_page(row = 3, searchbar = '', catId = '', brand = '', sort = 'default', min = '', max = '', page = 1) {
                 let url =
                     `{{ route('shoppage') }}?row=${row}&searchbar=${searchbar}&catlist=${catId}&brand=${brand}&sort=${sort}&min=${min}&max=${max}&page=${page}`;
                 $.ajax({
