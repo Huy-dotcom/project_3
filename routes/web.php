@@ -38,7 +38,6 @@ Route::namespace('Admin')->prefix('ad')->group(function () {
     Route::group(['middleware' => 'check.admin.login'], function() {
         // Dashboard
         Route::get('dashboard','DashboardController@index')->name('dashboard');
-        Route::get('filter-order', 'DashboardController@fillterOrder')->name('filter.order');
         // Category
         Route::group(['prefix'=>'category'],function(){
             Route::get('list','CategoryController@index')->name('category.list');
