@@ -12,8 +12,14 @@
                     </div>
                     <div class="topbar-menu right-menu">
                         <ul>
-                            <li class="menu-item" ><a title="Register or Login" href="{{route('user_login')}}">Login</a></li>
-                            <li class="menu-item" ><a title="Register or Login" href="{{ route('user_sign_up') }}">Register</a></li>
+                            @if (Session::has('user_name') && Session::has('user_id'))
+                            <li class="menu-item"><span>{{Session::get('user_name')}}</span></li>
+                            <li class="menu-item" ><a title="Register or Login" href="{{route('user_logout')}}">Đăng xuất</a></li>
+                            @else
+                                <li class="menu-item" ><a title="Register or Login" href="{{route('user_login')}}">Đăng nhập</a></li>
+                            @endif
+
+                            <li class="menu-item" ><a title="Register or Login" href="{{ route('user_sign_up') }}">Đăng kí</a></li>
                             {{-- <li class="menu-item lang-menu menu-item-has-children parent">
                                 <a title="English" href="#"><span class="img label-before"><img src="{{asset('assets')}}/images/lang-en.png" alt="lang-en"></span>English<i class="fa fa-angle-down" aria-hidden="true"></i></a>
                                 <ul class="submenu lang" >

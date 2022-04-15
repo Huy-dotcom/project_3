@@ -33,7 +33,7 @@
                         {{-- <form action="#" method="get" name="frm-billing"> --}}
                             <p class="row-in-form">
                                 <label for="fname">Tên khách hàng:</label>
-                                <span>nguyenvanA</span>
+                                <span>{{$user_info->name}}</span>
                             </p>
                             {{-- <p class="row-in-form">
 							<label for="lname">last name<span>*</span></label>
@@ -41,11 +41,11 @@
 						</p> --}}
                             <p class="row-in-form">
                                 <label for="email">Email:</label>
-                                <span>email@...</span>
+                                <span>{{$user_info->email}}.</span>
                             </p>
                             <p class="row-in-form">
                                 <label for="phone">Số điện thoại:</label>
-                                <span>012030210231</span>
+                                <span>{{$user_info->phone}}</span>
                             </p>
                             <p class="row-in-form">
                                 <label for="add">Địa chỉ người nhận:</label>
