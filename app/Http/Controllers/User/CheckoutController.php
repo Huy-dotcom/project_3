@@ -8,6 +8,7 @@ use App\Models\OrderDetail;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class CheckoutController extends Controller
 {
@@ -40,6 +41,8 @@ class CheckoutController extends Controller
                 'user_id' => session()->get('user_id'),
                 'total' => $request->get('total'),
                 'address' => $request->get('address'),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ]);
             $orderID = 'order_0';
         } else {
@@ -51,6 +54,8 @@ class CheckoutController extends Controller
                         'user_id' => session()->get('user_id'),
                         'total' => $request->get('total'),
                         'address' => $request->get('address'),
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now(),
                     ]);
                     $orderID = $OrderIDfake . $i;
                     break;
