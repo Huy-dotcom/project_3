@@ -20,7 +20,7 @@ class ShoppageController extends Controller
         // session()->forget('user_id');
         // session()->forget('user_name');
 
-        $rowPerPage = 10;
+        $rowPerPage = 9;
         if($request->ajax()){
             return $this->search($request,$rowPerPage);
         }
@@ -109,6 +109,8 @@ class ShoppageController extends Controller
         // get list of assign match with key
         $product = $query->paginate($rowPerPage);
         // dd($product);
+
+
         $html = view('user.productList')
                 ->with(['product' => $product])
                 ->render();

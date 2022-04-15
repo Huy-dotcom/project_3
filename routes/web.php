@@ -159,7 +159,7 @@ Route::get('/deleteCartItem/{id}',[CartController::class, 'delete_cart_item'])->
 Route::get('updateCart',[CartController::class, 'update_cart_item'])->name('update_cart');
 
 Route::middleware([CheckUserNotLoginMiddleware::class])->group(function(){
-    Route::get('ckeckout',[CheckoutController::class, 'index'])->name('checkout');
-    Route::get('ckeckout-process',[CheckoutController::class, 'checkoutProcess'])->name('checkout_process');
+    Route::get('checkout',[CheckoutController::class, 'index'])->name('checkout');
+    Route::get('checkout-process',[CheckoutController::class, 'checkoutProcess'])->name('checkout_process');
     Route::get('logout',[AuthController::class, 'logout_Process'])->name('user_logout');
 });

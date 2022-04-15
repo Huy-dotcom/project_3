@@ -1,4 +1,9 @@
 <header id="header" class="header header-style-1">
+    <style>
+        .current{
+            background-color: rgb(88, 88, 88);
+        }
+    </style>
     <div class="container-fluid">
         <div class="row">
             <div class="topbar-menu-area">
@@ -93,7 +98,13 @@
                             <a href="{{ route('cart') }}" class="link-direction">
                                 <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                                 <div class="left-info">
-                                    <span class="index">4 items</span>
+                                    <span class="index">
+                                        @if (Session::has('cart'))
+                                        {{count(Session::get('cart'))}} sản phẩm
+                                        @else
+                                        0 sản phẩm
+                                        @endif
+                                    </span>
                                     <span class="title">CART</span>
                                 </div>
                             </a>
@@ -129,13 +140,13 @@
                             <li class="menu-item home-icon">
                                 <a href="{{ route('homepage') }}" class="link-term mercado-item-title"><i class="fa fa-home" aria-hidden="true"></i></a>
                             </li>
-                            <li class="menu-item">
+                            <li class="menu-item {{Request::is('shop')?'current':''}}" >
                                 <a href="{{ route('shoppage') }}" class="link-term mercado-item-title">Shop</a>
                             </li>
-                            <li class="menu-item">
+                            <li class="menu-item {{Request::is('cart')?'current':''}}">
                                 <a href="{{ route('cart') }}" class="link-term mercado-item-title">Cart</a>
                             </li>
-                            <li class="menu-item">
+                            <li class="menu-item {{Request::is('checkout')?'current':''}}">
                                 <a href="{{ route('checkout') }}" class="link-term mercado-item-title">Checkout</a>
                             </li>
                         </ul>
