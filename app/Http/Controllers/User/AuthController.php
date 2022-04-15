@@ -54,4 +54,11 @@ class AuthController extends Controller
         $request->session()->put('user_name',$user->name);
         return redirect()->route('homepage');
     }
+    public function logout_Process(){
+        if(session()->has('user_name') && session()->has('user_id')){
+            session()->forget('user_name');
+            session()->forget('user_id');
+        }
+        return redirect()->back();
+    }
 }

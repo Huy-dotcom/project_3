@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,8 +21,10 @@ class CheckoutController extends Controller
         } else {
             $cart = session()->get('cart');
         }
+        $user_info = User::where('id', session()->get('user_id'))->first();
         return view('user.checkout', [
-            'cart' => $cart
+            'cart' => $cart,
+            'user_info' => $user_info
         ]);
     }
     public function checkoutProcess(Request $request)

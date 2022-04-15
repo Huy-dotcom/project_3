@@ -162,4 +162,5 @@ Route::get('updateCart',[CartController::class, 'update_cart_item'])->name('upda
 Route::middleware([CheckUserNotLoginMiddleware::class])->group(function(){
     Route::get('ckeckout',[CheckoutController::class, 'index'])->name('checkout');
     Route::get('ckeckout-process',[CheckoutController::class, 'checkoutProcess'])->name('checkout_process');
+    Route::get('logout',[AuthController::class, 'logout_Process'])->name('user_logout');
 });
