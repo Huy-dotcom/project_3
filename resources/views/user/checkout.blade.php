@@ -1,7 +1,27 @@
 @extends('user.layouts.app')
 
 @section('content')
-
+<style>
+    .btn-submit{
+        width:200px;
+        height:50px;
+        display:flex;
+        padding:12px;
+        background-color: #ff2832;
+        color: white;
+        border: none;
+        font-size:17px;
+        font-weight:700;
+        align-content: center;
+        justify-content:center;
+    }
+    .btn-submit:hover{
+        box-shadow:none;
+        background-color:white;
+        border: 1px solid #ff2832;
+        color: #ff2832;
+    }
+</style>
     <body class=" checkout page ">
 
         <!-- mobile menu -->
@@ -151,7 +171,7 @@
                                     <input type="hidden" name="total" value="{{$total}}">
                                 <p class="summary-info grand-total"><span>Tổng cộng:</span> <span
                                         class="grand-total-price"><?php echo number_format($total, -3, ',', ',') . ' VND'; ?></span></p>
-                                <button type="submit">xác nhận</button>
+                                <button type="submit" class="btn-submit" >xác nhận</button>
                                 {{-- </form> --}}
                             </div>
                             <div class="summary-item shipping-method">

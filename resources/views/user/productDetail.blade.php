@@ -3,13 +3,33 @@ integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiq
 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @extends('user.layouts.app')
 @section('content')
+<style>
+    .btn_addtocart{
+        display:flex;
+        width:200px;
+        height:40px;
+        background-color: #ff2832;
+        border:none;
+        box-shadow:none;
+        padding:9;
+        color:white;
+        font-size:16px;
+        font-weight: 600;
+        justify-content:center;
+    }
+    .btn_addtocart:hover{
+        background-color: white;
+        border:1px solid #ff2832;
+        color:#ff2832;
+    }
+</style>
     <main id="main" class="main-site">
 
         <div class="container">
 
             <div class="wrap-breadcrumb">
                 <ul>
-                    <li class="item-link"><a href="#" class="link">home</a></li>
+                    <li class="item-link"><a href="{{ route('homepage') }}" class="link">home</a></li>
                     <li class="item-link"><span>detail</span></li>
                 </ul>
             </div>
@@ -113,7 +133,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                                 <div class="wrap-butons">
                                     {{-- <a type="submit" onclick="this.closest('form').submit();return false;"
                                         class="btn add-to-cart">Thêm vào giỏ</a> --}}
-                                    <button class="btn_addtocart">thêm vào giỏ</button>
+                                    <button class="btn_addtocart">THÊM VÀO GIỎ</button>
                                     {{-- <div class="wrap-btn">
                                     <a href="#" class="btn btn-compare">Add Compare</a>
                                     <a href="#" class="btn btn-wishlist">Add Wishlist</a>

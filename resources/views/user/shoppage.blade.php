@@ -15,6 +15,26 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             <div class="mercado-panels"></div>
         </div>
         <style>
+            #price-filter{
+                width:90%;
+                height:30px;
+                display:flex;
+                margin:auto;
+                padding:4;
+                background-color: #ff2832;
+                color: white;
+                justify-content:center;
+                border: none;
+                font-size:14px;
+                font-weight:bold;
+            }
+            #price-filter:hover{
+                background-color:white;
+                border: 1px solid #ff2832;
+                color: #ff2832;
+            }
+        </style>
+        <style>
             .wrapper {
                 width: 100%;
                 background: #fff;
@@ -35,7 +55,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             }
 
             .field input {
-                width: 50px;
+                width: 100%;
                 height: 100%;
                 margin-left: 12px;
                 border: 1px solid #999;
@@ -67,7 +87,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             .slider-bar .progress {
                 height: 5px;
                 border-radius: 5px;
-                background: red;
+                background: #ff2832;
                 position: absolute;
                 left: 0%;
                 right: 0%;
@@ -90,7 +110,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             input[type="range"]::-webkit-slider-thumb {
                 height: 15px;
                 width: 15px;
-                background: red;
+                background: #ff2832;
                 pointer-events: auto;
                 -webkit-appearance: none;
                 border-radius: 50%;
@@ -100,7 +120,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                 border: none;
                 height: 15px;
                 width: 15px;
-                background: red;
+                background: #ff2832;
                 pointer-events: auto;
                 -moz-appearance: none;
                 border-radius: 50%;
@@ -142,6 +162,11 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                             </h1>
 
                             <div class="wrap-right">
+
+                                {{-- <div class="sort-item orderby ">
+                                    <input type="text" name="searchbar" id="searchbar" placeholder="Tìm...">
+                                    <button id="disable-btn"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                </div> --}}
                                 <div class="sort-item orderby ">
                                     <select name="" class="use-chosen" id="brand-list">
                                         <option value="" selected>Thương hiệu</option>
@@ -150,11 +175,6 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="sort-item orderby ">
-                                    <input type="text" name="searchbar" id="searchbar" placeholder="Search here...">
-                                    <button id="disable-btn"><i class="fa fa-search" aria-hidden="true"></i></button>
-                                </div>
-
                                 <div class="sort-item orderby ">
                                     <select name="catlist" class="use-chosen" id="cat-list">
                                         <option value="" selected>Danh mục</option>
@@ -305,58 +325,6 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                                     @break
                                 @endif
                                 @endforeach
-
-                                {{-- <li class="product-item">
-                                    <div class="product product-widget-style">
-                                        <div class="thumbnnail">
-                                            <a href="detail.html"
-                                                title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                                <figure><img src="{{ asset('assets') }}/images/products/digital_17.jpg"
-                                                        alt=""></figure>
-                                            </a>
-                                        </div>
-                                        <div class="product-info">
-                                            <a href="#" class="product-name"><span>Radiant-360 R6 Wireless
-                                                    Omnidirectional Speaker...</span></a>
-                                            <div class="wrap-price"><span class="product-price">$168.00</span></div>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="product-item">
-                                    <div class="product product-widget-style">
-                                        <div class="thumbnnail">
-                                            <a href="detail.html"
-                                                title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                                <figure><img src="{{ asset('assets') }}/images/products/digital_18.jpg"
-                                                        alt=""></figure>
-                                            </a>
-                                        </div>
-                                        <div class="product-info">
-                                            <a href="#" class="product-name"><span>Radiant-360 R6 Wireless
-                                                    Omnidirectional Speaker...</span></a>
-                                            <div class="wrap-price"><span class="product-price">$168.00</span></div>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="product-item">
-                                    <div class="product product-widget-style">
-                                        <div class="thumbnnail">
-                                            <a href="detail.html"
-                                                title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                                <figure><img src="{{ asset('assets') }}/images/products/digital_20.jpg"
-                                                        alt=""></figure>
-                                            </a>
-                                        </div>
-                                        <div class="product-info">
-                                            <a href="#" class="product-name"><span>Radiant-360 R6 Wireless
-                                                    Omnidirectional Speaker...</span></a>
-                                            <div class="wrap-price"><span class="product-price">$168.00</span></div>
-                                        </div>
-                                    </div>
-                                </li> --}}
-
                             </ul>
                         </div>
                     </div><!-- brand widget-->
@@ -456,11 +424,11 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             $(document).ready(function() {
                 $('.BTN_addtocart').click(function(e) {
                     e.preventDefault();
-                    var p_id = $(this).closest('.product-data').find('.p_id').val();
-                    var p_name = $(this).closest('.product-data').find('.p_name').val();
-                    var p_qty = $(this).closest('.product-data').find('.p_qty').val();
-                    var p_img = $(this).closest('.product-data').find('.p_img').val();
-                    var p_price = $(this).closest('.product-data').find('.p_price').val();
+                    var p_id = $(this).closest('.product').find('.p_id').val();
+                    var p_name = $(this).closest('.product').find('.p_name').val();
+                    var p_qty = $(this).closest('.product').find('.p_qty').val();
+                    var p_img = $(this).closest('.product').find('.p_img').val();
+                    var p_price = $(this).closest('.product').find('.p_price').val();
                     data = {
                         'id' : p_id,
                         'name' : p_name,
@@ -481,7 +449,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             });
 
 
-            function fetch_page(row = 10, searchbar = '', catId = '', brand = '', sort = 'default', min = '', max = '', page = 1) {
+            function fetch_page(row = 9, searchbar = '', catId = '', brand = '', sort = 'default', min = '', max = '', page = 1) {
                 let url =
                     `{{ route('shoppage') }}?row=${row}&searchbar=${searchbar}&catlist=${catId}&brand=${brand}&sort=${sort}&min=${min}&max=${max}&page=${page}`;
                 $.ajax({

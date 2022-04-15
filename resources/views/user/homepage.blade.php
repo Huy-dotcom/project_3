@@ -48,7 +48,7 @@
                         <div class="slide-info slide-3">
                             <h2 class="f-title" style="color: white">đa dạng<b style="color: red">linh kiện máy tính</b></h2>
                             <span class="f-subtitle" style="color: cornsilk">từ nhiều thương hiệu nổi tiếng</span>
-                            <p class="sale-info">chỉ từ<b class="price">10,000 VND</b></p>
+                            <p class="sale-info">chỉ từ<b class="price">&nbsp; 30,000 VND</b></p>
                             <a href="#" class="btn-link">Mua ngay</a>
                         </div>
                     </div>

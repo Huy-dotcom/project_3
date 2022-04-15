@@ -20,19 +20,21 @@ class AuthController extends Controller
     public function loginProcess (Request $request){
         $email = $request->get('email');
         $password = $request->get('password');
+        $previous_url = $request->get('previous-url');
         try{
             $user = User::where('email',$email)->where('password',$password)->firstOrFail();
             $request->session()->put('user_id',$user->id);
             $request->session()->put('user_name',$user->name);
-            return redirect()->route('homepage');
+            return redirect($previous_url);
         }catch(Exception $e){
-            return Redirect::route('user_login')->with('error', 'Invalid username or password!');
+            return Redirect::route('user_login')->with('error', 'Email hoặc mật khẩu không chính xác!');
         }
     }
     public function signUp(){
         return view('user.signup');
     }
     public function signUpProcess (Request $request){
+        $previous_url = $request->get('previous-url');
         $name = $request->get('name');
         $email = $request->get('email');
         $password = $request->get('password');
@@ -48,11 +50,11 @@ class AuthController extends Controller
             $user->save();
         }catch(Exception $e){
             // return $e->getMessage();
-            return Redirect::route('user_sign_up')->with('error', 'Email already exist!');
+            return Redirect::route('user_sign_up')->with('error', 'Email đã tồn tại!');
         }
         $request->session()->put('user_id',$user->id);
         $request->session()->put('user_name',$user->name);
-        return redirect()->route('homepage');
+        return redirect($previous_url);
     }
     public function logout_Process(){
         if(session()->has('user_name') && session()->has('user_id')){

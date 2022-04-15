@@ -17,13 +17,13 @@
             <div class="d-flex justify-content-center h-100">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Sign Up</h3>
+                        <h3>Đăng kí</h3>
                     </div>
                     <div class="card-body">
                         <form method="post" action="{{ route('sign_up_process') }}">
                             @csrf
                             <div class="input-group form-group">
-                                <input type="text" class="form-control" name="name" placeholder="name" required>
+                                <input type="text" class="form-control" name="name" placeholder="Tên" required>
                             </div>
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
@@ -35,33 +35,33 @@
                                 <div class="input-group-prepend">
                                     <span class="phone-icon"></span>
                                 </div>
-                                <input type="number" class="form-control" name="phone" placeholder="phone" required>
+                                <input type="number" class="form-control" name="phone" placeholder="SĐT" required>
                             </div>
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="password-icon"></span>
                                 </div>
-                                <input type="password" class="form-control" name="password" placeholder="password" required>
+                                <input type="password" class="form-control" name="password" placeholder="Mật khẩu" required>
                             </div>
                             <div class="input-group form-group" style="color:white">
-                                <h5>Sex:</h5>
+                                <h5>Giới tính:</h5>
                                 <div>
-                                    <span style="margin-left: 10px; ">Male<input type="radio" name="sex" value="0"></span>
-                                <span style="margin-left: 10px; ">Female<input type="radio" name="sex" value="1"></span>
-                                <span style="margin-left: 10px; ">Secret<input type="radio" name="sex" value="2" checked></span>
+                                    <span style="margin-left: 10px; ">Name<input type="radio" name="sex" value="0"></span>
+                                <span style="margin-left: 10px; ">Nũ<input type="radio" name="sex" value="1"></span>
+                                <span style="margin-left: 10px; ">Bí mật<input type="radio" name="sex" value="2" checked></span>
                                 </div>
 
                             </div>
                             <div class="text-center">
                                 <p style="opacity: 1; color: white">{{ Session::get('error') }}</p>
                             </div>
+
                             <div class="form-group">
                                 <input type="submit" value="sign up" class="btn float-right login_btn">
                             </div>
-                            <div class="feedback">
-
-                            </div>
+                            <input type="hidden" name="previous-url" value="{{ url()->previous() }}">
                         </form>
+                        <a href="{{ url()->previous() }}" style="color:white">trở lại</a>
                     </div>
                 </div>
             </div>
