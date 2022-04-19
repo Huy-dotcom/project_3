@@ -162,4 +162,5 @@ Route::middleware([CheckUserNotLoginMiddleware::class])->group(function(){
     Route::get('checkout',[CheckoutController::class, 'index'])->name('checkout');
     Route::get('checkout-process',[CheckoutController::class, 'checkoutProcess'])->name('checkout_process');
     Route::get('logout',[AuthController::class, 'logout_Process'])->name('user_logout');
+    Route::get('comment',[ProductDetailController::class, 'commenting'])->name('comment');
 });

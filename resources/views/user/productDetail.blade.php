@@ -3,26 +3,28 @@ integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiq
 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @extends('user.layouts.app')
 @section('content')
-<style>
-    .btn_addtocart{
-        display:flex;
-        width:200px;
-        height:40px;
-        background-color: #ff2832;
-        border:none;
-        box-shadow:none;
-        padding:9;
-        color:white;
-        font-size:16px;
-        font-weight: 600;
-        justify-content:center;
-    }
-    .btn_addtocart:hover{
-        background-color: white;
-        border:1px solid #ff2832;
-        color:#ff2832;
-    }
-</style>
+    <style>
+        .btn_addtocart {
+            display: flex;
+            width: 200px;
+            height: 40px;
+            background-color: #ff2832;
+            border: none;
+            box-shadow: none;
+            padding: 9;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            justify-content: center;
+        }
+
+        .btn_addtocart:hover {
+            background-color: white;
+            border: 1px solid #ff2832;
+            color: #ff2832;
+        }
+
+    </style>
     <main id="main" class="main-site">
 
         <div class="container">
@@ -114,37 +116,37 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                                 <p class="availability">Số dư: <b>{{ $productDetail->qty }}</b></p>
                             </div>
                             {{-- <form action="{{ route('add_to_cart') }}" method="GET"> --}}
-                                <input type="hidden" class="p_price"
-                                    value="{{ isset($productDetail->start_date) ? $productDetail->sale_price : $productDetail->price }}">
-                                <input type="hidden" class="p_id" value="{{ $productDetail->id }}">
-                                <input type="hidden" class="p_name" value="{{ $productDetail->name }}">
-                                <input type="hidden" class="p_img" value="{{ $productDetail->url }}">
-                                <div class="quantity">
+                            <input type="hidden" class="p_price"
+                                value="{{ isset($productDetail->start_date) ? $productDetail->sale_price : $productDetail->price }}">
+                            <input type="hidden" class="p_id" value="{{ $productDetail->id }}">
+                            <input type="hidden" class="p_name" value="{{ $productDetail->name }}">
+                            <input type="hidden" class="p_img" value="{{ $productDetail->url }}">
+                            <div class="quantity">
 
-                                    <span>Số lượng đặt:</span>
-                                    <div class="quantity-input">
-                                        <input type="text" class="p_qty" name="product-quatity" value="1"
-                                            data-max="{{ $productDetail->qty }}" pattern="[0-9]*">
+                                <span>Số lượng đặt:</span>
+                                <div class="quantity-input">
+                                    <input type="text" class="p_qty" name="product-quatity" value="1"
+                                        data-max="{{ $productDetail->qty }}" pattern="[0-9]*" readonly>
 
-                                        <a class="btn btn-reduce" href="#"></a>
-                                        <a class="btn btn-increase" href="#"></a>
-                                    </div>
+                                    <a class="btn btn-reduce" href="#"></a>
+                                    <a class="btn btn-increase" href="#"></a>
                                 </div>
-                                <div class="wrap-butons">
-                                    {{-- <a type="submit" onclick="this.closest('form').submit();return false;"
+                            </div>
+                            <div class="wrap-butons">
+                                {{-- <a type="submit" onclick="this.closest('form').submit();return false;"
                                         class="btn add-to-cart">Thêm vào giỏ</a> --}}
-                                    <button class="btn_addtocart">THÊM VÀO GIỎ</button>
-                                    {{-- <div class="wrap-btn">
+                                <button class="btn_addtocart">THÊM VÀO GIỎ</button>
+                                {{-- <div class="wrap-btn">
                                     <a href="#" class="btn btn-compare">Add Compare</a>
                                     <a href="#" class="btn btn-wishlist">Add Wishlist</a>
                                     </div> --}}
-                                </div>
+                            </div>
                             {{-- </form> --}}
                         </div>
                         <div class="advance-info">
                             <div class="tab-control normal">
                                 <a href="#description" class="tab-control-item active">Thông số sản phẩm</a>
-                                <a href="#add_infomation" class="tab-control-item">thông tin thêm</a>
+                                {{-- <a href="#add_infomation" class="tab-control-item">thông tin thêm</a> --}}
                                 <a href="#review" class="tab-control-item">bình luận</a>
                             </div>
                             <div class="tab-contents">
@@ -153,9 +155,9 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                                         {!! $productDetail->description !!}
                                     </p>
                                 </div>
-                                <div class="tab-content-item " id="add_infomation">
+                                {{-- <div class="tab-content-item " id="add_infomation">
                                     Chưa cập nhật
-                                    {{-- <table class="shop_attributes">
+                                     <table class="shop_attributes">
                                     <tbody>
                                         <tr>
                                             <th>Weight</th><td class="product_weight">1 kg</td>
@@ -167,8 +169,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                                             <th>Color</th><td><p>Black, Blue, Grey, Violet, Yellow</p></td>
                                         </tr>
                                     </tbody>
-                                </table> --}}
-                                </div>
+                                </table>
+                                </div> --}}
                                 <div class="tab-content-item " id="review">
 
                                     <div class="wrap-review-form">
@@ -184,15 +186,17 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                                                                 src="{{ asset('assets') }}/images/custom/default_user_ava.png"
                                                                 height="80" width="80">
                                                             <div class="comment-text">
-                                                                {{-- <div class="star-rating">
-                                                            <span class="width-80-percent">Rated <strong class="rating">5</strong> out of 5</span>
-                                                        </div> --}}
+                                                                <div class="star-rating">
+                                                                    <span class="width-80-percent">Rated <strong
+                                                                            class="rating">5</strong> out of
+                                                                        5</span>
+                                                                </div>
                                                                 <p class="meta">
                                                                     <strong
                                                                         class="woocommerce-review__author">{{ $comment->name }}</strong>
                                                                     <span class="woocommerce-review__dash">–</span>
                                                                     <time class="woocommerce-review__published-date"
-                                                                        datetime="{{ $comment->created_at }}">{{ $comment->created_at->format('Y.m.d') }}</time>
+                                                                        datetime="{{ $comment->created_at }}">{{ $comment->created_at }}</time>
                                                                 </p>
                                                                 <div class="description">
                                                                     <p>{{ $comment->content }}</p>
@@ -208,8 +212,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                                             <div id="review_form">
                                                 <div id="respond" class="comment-respond">
 
-                                                    <form action="#" method="post" id="commentform" class="comment-form"
-                                                        novalidate="">
+                                                    <form action="{{ route('comment') }}" method="get" id="commentform"
+                                                        class="comment-form" novalidate="">
                                                         <p class="comment-notes">
                                                             bạn cần đăng nhập để có thể bình luận!<span
                                                                 class="required"></span>
@@ -244,6 +248,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                                                                     class="required"></span>
                                                             </label>
                                                             <textarea id="comment" name="comment" cols="45" rows="8"></textarea>
+                                                            <input type="hidden" name="id"
+                                                                value="{{ $productDetail->id }}">
                                                         </p>
                                                         <p class="form-submit">
                                                             <input name="submit" type="submit" id="submit"
@@ -308,73 +314,36 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                         <h2 class="widget-title">Popular Products</h2>
                         <div class="widget-content">
                             <ul class="products">
-                                <li class="product-item">
-                                    <div class="product product-widget-style">
-                                        <div class="thumbnnail">
-                                            <a href="detail.html"
-                                                title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                                <figure><img src="{{ asset('assets') }}/images/products/digital_01.jpg"
-                                                        alt=""></figure>
-                                            </a>
+                                @php
+                                    $i = 0;
+                                @endphp
+                                @foreach ($products as $item)
+                                    <li class="product-item">
+                                        <div class="product product-widget-style">
+                                            <div class="thumbnnail">
+                                                <a href="{{ route('product_detail', ['id'=>$item->id]) }}"
+                                                    title="{{ $item->name }}">
+                                                    <figure><img
+                                                            src="{{ asset($item->url) }}"
+                                                            alt=""></figure>
+                                                </a>
+                                            </div>
+                                            <div class="product-info">
+                                                <a href="{{ route('product_detail', ['id'=>$item->id]) }}" class="product-name"><span>{{ \Illuminate\Support\Str::limit($item->name, 15, $end = '...') }}</span></a>
+                                                <div class="wrap-price"><span class="product-price">@if ($item->start_date == null)
+                                                    <?php echo number_format($item->price, -3, ',', ',') . ' VND'; ?>
+                                                    @else
+                                                    <?php echo number_format($item->sale_price, -3, ',', ',') . ' VND'; ?>
+                                                    @endif</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="product-info">
-                                            <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional
-                                                    Speaker...</span></a>
-                                            <div class="wrap-price"><span class="product-price">$168.00</span></div>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                    @if (++$i == 5)
+                                    @break
+                                @endif
+                                @endforeach
 
-                                <li class="product-item">
-                                    <div class="product product-widget-style">
-                                        <div class="thumbnnail">
-                                            <a href="detail.html"
-                                                title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                                <figure><img src="{{ asset('assets') }}/images/products/digital_17.jpg"
-                                                        alt=""></figure>
-                                            </a>
-                                        </div>
-                                        <div class="product-info">
-                                            <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional
-                                                    Speaker...</span></a>
-                                            <div class="wrap-price"><span class="product-price">$168.00</span></div>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="product-item">
-                                    <div class="product product-widget-style">
-                                        <div class="thumbnnail">
-                                            <a href="detail.html"
-                                                title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                                <figure><img src="{{ asset('assets') }}/images/products/digital_18.jpg"
-                                                        alt=""></figure>
-                                            </a>
-                                        </div>
-                                        <div class="product-info">
-                                            <a href="#" class="product-name"><span>Radiant-360 R6 Wireless Omnidirectional
-                                                    Speaker...</span></a>
-                                            <div class="wrap-price"><span class="product-price">$168.00</span></div>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li class="product-item">
-                                    <div class="product product-widget-style">
-                                        <div class="thumbnnail">
-                                            <a href="detail.html"
-                                                title="Radiant-360 R6 Wireless Omnidirectional Speaker [White]">
-                                                <figure><img src="{{ asset('assets') }}/images/products/digital_20.jpg"
-                                                        alt=""></figure>
-                                            </a>
-                                        </div>
-                                        <div class="product-info">
-                                            <a href="#" class="product-name"><span>Radiant-360 R6 Wireless
-                                                    Omnidirectional Speaker...</span></a>
-                                            <div class="wrap-price"><span class="product-price">$168.00</span></div>
-                                        </div>
-                                    </div>
-                                </li>
 
                             </ul>
                         </div>
@@ -545,30 +514,30 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </main>
     <script>
         $(document).ready(function() {
-                $('.btn_addtocart').click(function(e) {
-                    e.preventDefault();
-                    var p_id = $(this).closest('.wrap-product-detail').find('.p_id').val();
-                    var p_name = $(this).closest('.wrap-product-detail').find('.p_name').val();
-                    var p_qty = $(this).closest('.wrap-product-detail').find('.p_qty').val();
-                    var p_img = $(this).closest('.wrap-product-detail').find('.p_img').val();
-                    var p_price = $(this).closest('.wrap-product-detail').find('.p_price').val();
-                    data = {
-                        'id' : p_id,
-                        'name' : p_name,
-                        'product-quatity' : p_qty,
-                        'url' : p_img,
-                        'price' : p_price,
-                    };
-                    $.ajax({
-                        type: "GET",
-                        url: "{{route('add_to_cart')}}",
-                        data: data,
-                        success: function(response) {
-                            alert('Thêm thành công')
-                        }
-                    });
-
+            $('.btn_addtocart').click(function(e) {
+                e.preventDefault();
+                var p_id = $(this).closest('.wrap-product-detail').find('.p_id').val();
+                var p_name = $(this).closest('.wrap-product-detail').find('.p_name').val();
+                var p_qty = $(this).closest('.wrap-product-detail').find('.p_qty').val();
+                var p_img = $(this).closest('.wrap-product-detail').find('.p_img').val();
+                var p_price = $(this).closest('.wrap-product-detail').find('.p_price').val();
+                data = {
+                    'id': p_id,
+                    'name': p_name,
+                    'product-quatity': p_qty,
+                    'url': p_img,
+                    'price': p_price,
+                };
+                $.ajax({
+                    type: "GET",
+                    url: "{{ route('add_to_cart') }}",
+                    data: data,
+                    success: function(response) {
+                        alert('Thêm thành công')
+                    }
                 });
+
             });
+        });
     </script>
 @endsection
