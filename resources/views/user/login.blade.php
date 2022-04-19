@@ -16,7 +16,7 @@
         <div class="d-flex justify-content-center h-100">
             <div class="card">
                 <div class="card-header">
-                    <h3>Đăng nhâpk</h3>
+                    <h3>Đăng nhập</h3>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login_process') }}">

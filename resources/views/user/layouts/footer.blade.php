@@ -7,32 +7,32 @@
                     <li class="fc-info-item">
                         <i class="fa fa-truck" aria-hidden="true"></i>
                         <div class="wrap-left-info">
-                            <h4 class="fc-name">Free Shipping</h4>
-                            <p class="fc-desc">Free On Oder Over $99</p>
+                            <h4 class="fc-name">Miễn Phí Giao Hàng</h4>
+                            <p class="fc-desc">Cho Những Sản Phẩm Trên 30TR</p>
                         </div>
 
                     </li>
                     <li class="fc-info-item">
                         <i class="fa fa-recycle" aria-hidden="true"></i>
                         <div class="wrap-left-info">
-                            <h4 class="fc-name">Guarantee</h4>
-                            <p class="fc-desc">30 Days Money Back</p>
+                            <h4 class="fc-name">Bảo Hành</h4>
+                            <p class="fc-desc">30 Ngày Kể Từ Khi Nhận Hàng</p>
                         </div>
 
                     </li>
                     <li class="fc-info-item">
                         <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
                         <div class="wrap-left-info">
-                            <h4 class="fc-name">Safe Payment</h4>
-                            <p class="fc-desc">Safe your online payment</p>
+                            <h4 class="fc-name">Giao Dịch</h4>
+                            <p class="fc-desc">An Toàn - Nhanh Chóng - Tiện Lợi</p>
                         </div>
 
                     </li>
                     <li class="fc-info-item">
                         <i class="fa fa-life-ring" aria-hidden="true"></i>
                         <div class="wrap-left-info">
-                            <h4 class="fc-name">Online Suport</h4>
-                            <p class="fc-desc">We Have Support 24/7</p>
+                            <h4 class="fc-name">CSKH Online</h4>
+                            <p class="fc-desc">Dịch Vụ Hoạt Động 24/7</p>
                         </div>
 
                     </li>
@@ -41,7 +41,7 @@
         </div>
         <!--End function info-->
 
-        <div class="main-footer-content">
+        {{-- <div class="main-footer-content">
 
             <div class="container">
 
@@ -229,20 +229,20 @@
                 </div>
             </div>
 
-        </div>
+        </div> --}}
 
         <div class="coppy-right-box">
             <div class="container">
                 <div class="coppy-right-item item-left">
-                    <p class="coppy-right-text">Copyright © 2020 Surfside Media. All rights reserved</p>
+                    <p class="coppy-right-text">Copyright © 2020. All rights reserved</p>
                 </div>
                 <div class="coppy-right-item item-right">
                     <div class="wrap-nav horizontal-nav">
                         <ul>
-                            <li class="menu-item"><a href="about-us.html" class="link-term">About us</a></li>
-                            <li class="menu-item"><a href="privacy-policy.html" class="link-term">Privacy Policy</a></li>
-                            <li class="menu-item"><a href="terms-conditions.html" class="link-term">Terms & Conditions</a></li>
-                            <li class="menu-item"><a href="return-policy.html" class="link-term">Return Policy</a></li>
+                            <li class="menu-item"><a href="#" class="link-term">About us</a></li>
+                            <li class="menu-item"><a href="#" class="link-term">Privacy Policy</a></li>
+                            <li class="menu-item"><a href="#" class="link-term">Terms & Conditions</a></li>
+                            <li class="menu-item"><a href="#" class="link-term">Return Policy</a></li>
                         </ul>
                     </div>
                 </div>
