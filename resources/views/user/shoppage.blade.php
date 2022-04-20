@@ -271,7 +271,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                                         <div class="separator">-</div>
                                         <div class="field">
                                             <span></span>
-                                            <input type="number" id="max" class="input-max" value="50">
+                                            <input type="number" id="max" class="input-max" value="200">
                                             <h5>Tr</h5>
                                         </div>
                                     </div>
@@ -279,8 +279,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                                         <div class="progress"></div>
                                     </div>
                                     <div class="range-input">
-                                        <input type="range" class="range-min" min="0" max="50" value="0" step="1">
-                                        <input type="range" class="range-max" min="0" max="50" value="50" step="1">
+                                        <input type="range" class="range-min" min="0" max="200" value="0" step="1">
+                                        <input type="range" class="range-max" min="0" max="200" value="200" step="1">
                                     </div>
                                 </div>
                                 <button class="filter-submit" id="price-filter">lọc</button>
