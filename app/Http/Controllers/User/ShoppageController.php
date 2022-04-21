@@ -20,7 +20,7 @@ class ShoppageController extends Controller
         // session()->forget('user_id');
         // session()->forget('user_name');
 
-        $rowPerPage = 3;
+        $rowPerPage = 9;
         if($request->ajax()){
             return $this->search($request,$rowPerPage);
         }
