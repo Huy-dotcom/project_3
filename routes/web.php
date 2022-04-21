@@ -6,6 +6,7 @@ use App\Http\Controllers\user\ProductDetailController;
 use App\Http\Controllers\user\ShoppageController;
 use App\Http\Controllers\user\CartController;
 use App\Http\Controllers\user\CheckoutController;
+use App\Http\Controllers\User\OrderListController;
 use App\Http\Middleware\CheckUserLoginMiddleware;
 use App\Http\Middleware\CheckUserNotLoginMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -163,4 +164,8 @@ Route::middleware([CheckUserNotLoginMiddleware::class])->group(function(){
     Route::get('checkout-process',[CheckoutController::class, 'checkoutProcess'])->name('checkout_process');
     Route::get('logout',[AuthController::class, 'logout_Process'])->name('user_logout');
     Route::get('comment',[ProductDetailController::class, 'commenting'])->name('comment');
+    Route::get('order-list',[OrderListController::class, 'index'])->name('order_list');
+    Route::get('order-detail/{id}',[OrderListController::class, 'detail'])->name('order_detail');
+    Route::get('cancel-order/{id}',[OrderListController::class, 'cancel'])->name('cancel_order');
+
 });

@@ -144,10 +144,13 @@
                                 <a href="{{ route('shoppage') }}" class="link-term mercado-item-title">Shop</a>
                             </li>
                             <li class="menu-item {{Request::is('cart')?'current':''}}">
-                                <a href="{{ route('cart') }}" class="link-term mercado-item-title">Cart</a>
+                                <a href="{{ route('cart') }}" class="link-term mercado-item-title">Giỏ Hàng</a>
                             </li>
                             <li class="menu-item {{Request::is('checkout')?'current':''}}">
                                 <a href="{{ route('checkout') }}" class="link-term mercado-item-title">Checkout</a>
+                            </li>
+                            <li class="menu-item {{Request::is('order-list')?'current':''}}">
+                                <a href="{{ route('order_list') }}" class="link-term mercado-item-title">Đơn Hàng</a>
                             </li>
                         </ul>
                     </div>
