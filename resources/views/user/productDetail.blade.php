@@ -105,7 +105,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                         </div> --}}
                             <div class="wrap-price">
                                 @if ($productDetail->start_date == null)
-                                    <span class="product-price">Giá: &nbsp;<?php echo number_format($productDetail->price, -3, ',', ',') . ' VND'; ?></span>
+                                    <span class="product-price">&nbsp;<?php echo number_format($productDetail->price, -3, ',', ',') . ' VND'; ?></span>
                                 @else
                                     <span class="product-price" style="text-decoration: line-through">Giá:
                                         &nbsp;<?php echo number_format($productDetail->price, -3, ',', ',') . ' VND'; ?></span><br>
