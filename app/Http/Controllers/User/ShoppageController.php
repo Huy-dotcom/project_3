@@ -24,8 +24,9 @@ class ShoppageController extends Controller
         if($request->ajax()){
             return $this->search($request,$rowPerPage);
         }
-
+        else{
         return $this->getStaticDataForView($request,$rowPerPage);
+        }
 
 
         // $search = $request->get('search');
@@ -77,9 +78,9 @@ class ShoppageController extends Controller
         $rowPerPage = $request->row ?? $rowPerPage;
         // dd($request->search);
         // grade filter
-        // if (isset($request->catlist) && $request->catlist != 'all') {
-        //     $query->where('category_id', $request->catlist);
-        // }
+        if (isset($request->catlist) && $request->catlist != 'all') {
+            $query->where('category_id', $request->catlist);
+        }
         if (isset($request->searchbar)) {
             $query->where('name','like', "%$request->searchbar%");
         }
