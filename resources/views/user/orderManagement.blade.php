@@ -10,6 +10,7 @@
                 padding: 20px;
                 font-family: Montserrat;
                 background: rgb(247, 247, 247);
+
             }
 
             .tabs {
@@ -19,6 +20,7 @@
                 width: 95%;
                 background: #fff;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0, 0.5);
+                border: 1px solid #666;
             }
 
             .tab-head {
@@ -35,14 +37,17 @@
                 cursor: pointer;
                 background-color: #8E806A;
                 color: white;
-                border: 1px solid white;
+                border-bottom: 1px solid #666;
+                border-right: 1px solid #666;
                 font-weight: 600;
                 font-size: 16px;
+                border-collapse: collapse;
             }
 
             .tab_toggle.is_active {
                 background-color: #fff;
                 color: #8E806A;
+                border-bottom:none;
             }
 
             .tab_content {
