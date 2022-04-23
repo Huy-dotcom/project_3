@@ -4,25 +4,29 @@
     <body class=" shopping-cart page ">
         <style>
             .quantity {
-                border: 1px solid rgb(211, 209, 209);
+                display:flex;
+                text-align:center;
+                height:75px;
             }
-
+            .quantity-input{
+            }
             .btn-update {
                 background-color: white;
-                border:1px solid #008CBA;
-                color: #008CBA;
-                padding: 8px 16px;
+                border:1px solid #ff2832;
+                color: #ff2832;
+                padding:3px 3px;
+                height:30px;
                 text-align: center;
                 text-decoration: none;
                 display: inline-block;
                 font-size: 13px;
-                margin: 4px 30px;
-                transition-duration: 0.4s;
+                font-weight: 600;
+
+                transition-duration: 0.3s;
                 cursor: pointer;
-                border-radius: 5px;
             }
             .btn-update:hover, .btn-update:active{
-                background-color: #008CBA;
+                background-color: #ff2832;
                 color:white;
             }
 
@@ -153,7 +157,7 @@
                         </div>
                         <div class="update-clear">
                             {{-- <a class="btn btn-clear" href="#">Làm trống giỏ hàng</a> --}}
-                            <a class="btn btn-update" href="{{ route('homepage') }}">trang chủ</a>
+                            {{-- <a class="btn btn-update" href="{{ route('homepage') }}">trang chủ</a> --}}
                         </div>
                     </div>
 

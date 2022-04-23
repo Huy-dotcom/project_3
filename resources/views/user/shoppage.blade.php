@@ -1,6 +1,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
 integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+crossorigin="anonymous" referrerpolicy="no-referrer">
+</script>
 @extends('user.layouts.app')
 
 @section('content')
@@ -15,24 +16,26 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             <div class="mercado-panels"></div>
         </div>
         <style>
-            #price-filter{
-                width:90%;
-                height:30px;
-                display:flex;
-                margin:auto;
-                padding:4;
+            #price-filter {
+                width: 90%;
+                height: 30px;
+                display: flex;
+                margin: auto;
+                padding: 4;
                 background-color: #ff2832;
                 color: white;
-                justify-content:center;
+                justify-content: center;
                 border: none;
-                font-size:14px;
-                font-weight:bold;
+                font-size: 14px;
+                font-weight: bold;
             }
-            #price-filter:hover{
-                background-color:white;
+
+            #price-filter:hover {
+                background-color: white;
                 border: 1px solid #ff2832;
                 color: #ff2832;
             }
+
         </style>
         <style>
             .wrapper {
@@ -158,7 +161,6 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                                         @endif
                                     @endforeach
                                 @endif
-
                             </h1>
 
                             <div class="wrap-right">
@@ -175,14 +177,14 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="sort-item orderby ">
+                                {{-- <div class="sort-item orderby ">
                                     <select name="catlist" class="use-chosen" id="cat-list">
                                         <option value="" selected>Danh mục</option>
                                         @foreach ($category as $item)
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div> --}}
                                 <div class="sort-item orderby">
                                     Sắp xếp: &nbsp;
                                     <select name="sort" class="use-chosen" id="product-sort-list">
@@ -223,9 +225,11 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
                         </div>
                         <!--end wrap shop control-->
+                        <div id="product-container">
 
-                        @include('user.productList')
+                            @include('user.productList')
 
+                        </div>
 
                     </div>
 
@@ -289,212 +293,185 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
 
-                    <div class="widget mercado-widget widget-product">
-                        <h2 class="widget-title">Sản phẩm nổi bật</h2>
-                        <div class="widget-content">
-                            <ul class="products">
-                                @php
-                                    $i = 0;
-                                @endphp
-                                @foreach ($product as $item)
-
-                                <li class="product-item">
-                                    <div class="product product-widget-style">
-                                        <div class="thumbnnail">
-                                            <a href="{{ route('product_detail', ['id'=>$item->id]) }}"
-                                                title="{{$item->name}}">
-                                                <figure><img src="{{ asset($item->url) }}"
-                                                        alt=""></figure>
-                                            </a>
-                                        </div>
-                                        <div class="product-info">
-                                            <a href="{{ route('product_detail', ['id'=>$item->id]) }}" class="product-name"><span>{{ \Illuminate\Support\Str::limit($item->name, 15, $end = '...') }}
-                                                    </span></a>
+                        <div class="widget mercado-widget widget-product">
+                            <h2 class="widget-title">Sản phẩm nổi bật</h2>
+                            <div class="widget-content">
+                                <ul class="products">
+                                    @php
+                                        $i = 0;
+                                    @endphp
+                                    @foreach ($product as $item)
+                                        <li class="product-item">
+                                            <div class="product product-widget-style">
+                                                <div class="thumbnnail">
+                                                    <a href="{{ route('product_detail', ['id' => $item->id]) }}"
+                                                        title="{{ $item->name }}">
+                                                        <figure><img src="{{ asset($item->url) }}" alt=""></figure>
+                                                    </a>
+                                                </div>
+                                                <div class="product-info">
+                                                    <a href="{{ route('product_detail', ['id' => $item->id]) }}"
+                                                        class="product-name"><span>{{ \Illuminate\Support\Str::limit($item->name, 15, $end = '...') }}
+                                                        </span></a>
                                                     <br>
                                                     <br>
-                                            <div class="wrap-price"><span class="product-price">
-                                            @if ($item->start_date == null)
-                                            <?php echo number_format($item->price, -3, ',', ',') . ' VND'; ?>
-                                            @else
-                                            <?php echo number_format($item->sale_price, -3, ',', ',') . ' VND'; ?>
-                                            @endif</span></div>
-                                        </div>
-                                    </div>
-                                </li>
-                                @if (++$i == 5)
-                                    @break
-                                @endif
+                                                    <div class="wrap-price"><span class="product-price">
+                                                            @if ($item->start_date == null)
+                                                                <?php echo number_format($item->price, -3, ',', ',') . ' VND'; ?>
+                                                            @else
+                                                                <?php echo number_format($item->sale_price, -3, ',', ',') . ' VND'; ?>
+                                                            @endif
+                                                        </span></div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        @if (++$i == 5)
+                                        @break
+                                    @endif
                                 @endforeach
                             </ul>
                         </div>
                     </div><!-- brand widget-->
 
-                    </div>
-                    <!--end sitebar-->
-
                 </div>
-                <!--end row-->
+                <!--end sitebar-->
 
             </div>
-            <!--end container-->
+            <!--end row-->
 
-        </main>
-        <script>
-            let priceGap = 1;
-            const rangeInput = document.querySelectorAll(".range-input input"),
-                priceInput = document.querySelectorAll(".price-input input"),
-                progress = document.querySelector(".slider-bar .progress");
+        </div>
+        <!--end container-->
 
-            priceInput.forEach(input => {
-                input.addEventListener("input", e => {
-                    let minVal = parseInt(priceInput[0].value),
-                        maxVal = parseInt(priceInput[1].value);
+    </main>
+    <script>
+        let priceGap = 1;
+        const rangeInput = document.querySelectorAll(".range-input input"),
+            priceInput = document.querySelectorAll(".price-input input"),
+            progress = document.querySelector(".slider-bar .progress");
 
-                    if ((maxVal - minVal >= priceGap) && maxVal < 50) {
-                        if (e.target.className === "input-min") {
-                            rangeInput[0].value = minVal;
-                            progress.style.left = (minVal / rangeInput[0].max) * 100 + "%";
-                        } else {
-                            rangeInput[1].value = maxVal;
-                            progress.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
-                        }
-                    }
+        priceInput.forEach(input => {
+            input.addEventListener("input", e => {
+                let minVal = parseInt(priceInput[0].value),
+                    maxVal = parseInt(priceInput[1].value);
 
-                });
-            });
-            rangeInput.forEach(input => {
-                input.addEventListener("input", e => {
-                    let minVal = parseInt(rangeInput[0].value),
-                        maxVal = parseInt(rangeInput[1].value);
-
-                    if ((maxVal - minVal) < priceGap) {
-                        if (e.target.className === "range-min") {
-                            rangeInput[0].value = maxVal - priceGap;
-                        } else {
-                            rangeInput[1].value = minVal + priceGap;
-                        }
-                    } else {
-                        priceInput[0].value = minVal;
-                        priceInput[1].value = maxVal;
+                if ((maxVal - minVal >= priceGap) && maxVal < 50) {
+                    if (e.target.className === "input-min") {
+                        rangeInput[0].value = minVal;
                         progress.style.left = (minVal / rangeInput[0].max) * 100 + "%";
+                    } else {
+                        rangeInput[1].value = maxVal;
                         progress.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
                     }
-
-                });
-            });
-        </script>
-
-        <script type="text/javascript">
-            const params = new URLSearchParams(window.location.search)
-            $(function() {
-                // fetch data when search
-                $(document).on('input', '#searchbar', function() {
-                    fetch_page(...get_search());
-                });
-                // fetch data when choose category
-                $(document).on('change', '#cat-list', function() {
-                    fetch_page(...get_search());
-                });
-                $(document).on('change', '#brand-list', function() {
-                    fetch_page(...get_search());
-                });
-                // fetch data when choose subject
-                $(document).on('change', '#product-sort-list', function() {
-                    fetch_page(...get_search());
-                });
-                // fetch data when choose teacher
-                $(document).on('click', '#price-filter', function(e) {
-                    e.preventDefault();
-                    fetch_page(...get_search());
-                });
-                // fetch data when switch page
-                $(document).on('click', '.pagination a', function(e) {
-                    e.preventDefault();
-                    let page = $(this).attr('href').split('page=')[1];
-                    fetch_page(...get_search(), page);
-                });
-                // fetch data when click search button
-                $(document).on('click', '#disable-btn', function(e) {
-                    e.preventDefault();
-                    fetch_page(...get_search());
-                });
-
+                }
 
             });
-            $(document).ready(function() {
-                $('.BTN_addtocart').click(function(e) {
-                    e.preventDefault();
-                    var p_id = $(this).closest('.product').find('.p_id').val();
-                    var p_name = $(this).closest('.product').find('.p_name').val();
-                    var p_qty = $(this).closest('.product').find('.p_qty').val();
-                    var p_img = $(this).closest('.product').find('.p_img').val();
-                    var p_price = $(this).closest('.product').find('.p_price').val();
-                    data = {
-                        'id' : p_id,
-                        'name' : p_name,
-                        'product-quatity' : p_qty,
-                        'url' : p_img,
-                        'price' : p_price,
-                    };
-                    $.ajax({
-                        type: "GET",
-                        url: "addToCart",
-                        data: data,
-                        success: function(response) {
-                            alert(response);
-                        }
-                    });
+        });
+        rangeInput.forEach(input => {
+            input.addEventListener("input", e => {
+                let minVal = parseInt(rangeInput[0].value),
+                    maxVal = parseInt(rangeInput[1].value);
 
-                });
-            });
-
-
-            function fetch_page(row = 9, searchbar = '', catId = '', brand = '', sort = 'default', min = '', max = '', page = 1) {
-                let url =
-                    `{{ route('shoppage') }}?row=${row}&searchbar=${searchbar}&catlist=${catId}&brand=${brand}&sort=${sort}&min=${min}&max=${max}&page=${page}`;
-                $.ajax({
-                    url: url,
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function(res) {
-                        $('#product-container').html(res.html);
-                        $('[data-toggle="tooltip"]').tooltip();
-                    },
-                    error: function(res) {
-                        let error = res.responseJSON;
-                        // redirect if unauthenticate
-                        if (error.hasOwnProperty('url')) {}
+                if ((maxVal - minVal) < priceGap) {
+                    if (e.target.className === "range-min") {
+                        rangeInput[0].value = maxVal - priceGap;
+                    } else {
+                        rangeInput[1].value = minVal + priceGap;
                     }
-                });
-            }
+                } else {
+                    priceInput[0].value = minVal;
+                    priceInput[1].value = maxVal;
+                    progress.style.left = (minVal / rangeInput[0].max) * 100 + "%";
+                    progress.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
+                }
 
-            function get_search() {
-                if (params)
-                    return [
-                        $('#row').val(),
-                        params.has('search') ? params.get('search') : $('#searchbar').val(),
-                        params.has('cat') ? params.get('cat') : $('#cat-list').val(),
-                        $('#brand-list').val(),
-                        $('#product-sort-list').val(),
-                        $('#min').val() + '000000',
-                        $('#max').val() + '000000'
-                    ];
-            }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        const params = new URLSearchParams(window.location.search)
+        $(function() {
+            // fetch data when search
+            $(document).on('input', '#searchbar', function() {
+                fetch_page(...get_search());
+            });
+            // fetch data when choose category
+            $(document).on('change', '#cat-list', function() {
+                fetch_page(...get_search());
+            });
+            $(document).on('change', '#brand-list', function() {
+                fetch_page(...get_search());
+            });
+            // fetch data when choose subject
+            $(document).on('change', '#product-sort-list', function() {
+                fetch_page(...get_search());
+            });
+            // fetch data when choose teacher
+            $(document).on('click', '#price-filter', function(e) {
+                e.preventDefault();
+                fetch_page(...get_search());
+            });
+            // fetch data when switch page
+            $(document).on('click', '.pagination a', function(e) {
+                e.preventDefault();
+                let page = $(this).attr('href').split('page=')[1];
+                fetch_page(...get_search(), page);
+            });
+            // fetch data when click search button
+            $(document).on('click', '#disable-btn', function(e) {
+                e.preventDefault();
+                fetch_page(...get_search());
+            });
+
+        });
+
+        function fetch_page(row = 9, searchbar = '', catId = '', brand = '', sort = 'default', min = '', max = '', page =
+            '') {
+            let url =
+                `{{ route('shoppage') }}?row=${row}&searchbar=${searchbar}&catlist=${catId}&brand=${brand}&sort=${sort}&min=${min}&max=${max}&page=${page}`;
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'json',
+                success: function(res) {
+                    $('#product-container').html(res.html);
+                    $('[data-toggle="tooltip"]').tooltip();
+                },
+                error: function(res) {
+                    let error = res.responseJSON;
+                    // redirect if unauthenticate
+                    if (error.hasOwnProperty('url')) {}
+                }
+            });
+        }
+
+        function get_search() {
+            if (params)
+                return [
+                    $('#row').val(),
+                    params.has('search') ? params.get('search') : $('#searchbar').val(),
+                    params.has('cat') ? params.get('cat') : $('#cat-list').val(),
+                    $('#brand-list').val(),
+                    $('#product-sort-list').val(),
+                    $('#min').val() + '000000',
+                    $('#max').val() + '000000'
+                ];
+        }
 
 
 
-            // function get_search() {
-            //     if(params)
-            //     return [
-            //         $('#row').val(),
-            //         $('#searchbar').val(),
-            //         $('#cat-list').val(),
-            //         $('#brand-list').val(),
-            //         $('#product-sort-list').val(),
-            //         $('#min').val(),
-            //         $('#max').val()
-            //     ];
-            // }
-        </script>
+        // function get_search() {
+        //     if(params)
+        //     return [
+        //         $('#row').val(),
+        //         $('#searchbar').val(),
+        //         $('#cat-list').val(),
+        //         $('#brand-list').val(),
+        //         $('#product-sort-list').val(),
+        //         $('#min').val(),
+        //         $('#max').val()
+        //     ];
+        // }
+    </script>
 
-    @endsection
+@endsection
