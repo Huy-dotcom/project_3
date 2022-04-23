@@ -304,12 +304,12 @@
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     {{-- Revenue by day --}}
     <script type="text/javascript">
-        var arr = [['Ngày', 'Doanh thu']];
+        var arr = [['Ngày', 'Doanh thu', { role: "style" }]];
         var orders = JSON.parse(document.getElementById("data1").value);
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);
         for(x of orders){
-          arr.push([x.order_day,parseInt(x.total_price)])
+          arr.push([x.order_day,parseInt(x.total_price),'#3366CC'])
         }  
         function drawChart() {
   
@@ -318,10 +318,10 @@
           );
   
           var options = {
-            title: 'Thống kê doanh thu theo ngày'
+            title: 'Thống kê doanh thu theo ngày',
           };
   
-          var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
+          var chart = new google.visualization.ColumnChart(document.getElementById('columnchart'));
   
           chart.draw(data, options);
         }
