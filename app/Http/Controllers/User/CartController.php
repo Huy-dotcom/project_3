@@ -28,8 +28,10 @@ class CartController extends Controller
         //
         // return dd($cart);
         // $products = Product::whereIn('id', (array)$ids)->paginate(5);
+        $products = Product::all();
         return view('user.cart',[
             'cart'=> $cart,
+            'product' => $products
         ]);
         // \Log::info(print_r(session()->all(),true));
 
