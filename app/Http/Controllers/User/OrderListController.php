@@ -12,11 +12,12 @@ class OrderListController extends Controller
 {
     public function index()
     {
-        $allOrder = Order::orderBy('created_at', 'DESC')->get();
-        $orderOnChecking = Order::where('status', '0')->get();
-        $orderOnShipping = Order::where('status', '1')->get();
-        $orderFinished = Order::where('status', '2')->get();
-        $history = Order::where('status', '3')->orWhere('status', '2')->get();
+        $userId= session()->get('user_id');
+        $allOrder = Order::where('user_id',$userId)->orderBy('created_at', 'DESC')->get();
+        $orderOnChecking = Order::where('user_id',$userId)->where('status', '0')->get();
+        $orderOnShipping = Order::where('user_id',$userId)->where('status', '1')->get();
+        $orderFinished = Order::where('user_id',$userId)->where('status', '2')->get();
+        $history = Order::where('user_id',$userId)->where('status', '3')->orWhere('status', '2')->where('user_id',$userId)->get();
         return view('user.orderManagement', [
             'allOrder' => $allOrder,
             'orderOnChecking' => $orderOnChecking,

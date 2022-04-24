@@ -46,7 +46,7 @@
                             <div class="input-group form-group" style="color:white">
                                 <h5>Giới tính:</h5>
                                 <div>
-                                    <span style="margin-left: 10px; ">Name<input type="radio" name="sex" value="0"></span>
+                                    <span style="margin-left: 10px; ">Nam<input type="radio" name="sex" value="0"></span>
                                 <span style="margin-left: 10px; ">Nũ<input type="radio" name="sex" value="1"></span>
                                 <span style="margin-left: 10px; ">Bí mật<input type="radio" name="sex" value="2" checked></span>
                                 </div>
