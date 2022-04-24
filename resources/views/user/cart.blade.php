@@ -78,10 +78,15 @@
                                         <form action="{{ route('update_cart') }}" method="get">
                                             <div class="quantity-input">
                                                 <input type="hidden" name="index" value="{{$loop->index}}">
+                                                @foreach ($product as $item)
+                                                @if ($item->id == $cart_item['p_id'])
+
                                                 <input type="text" name="product-quatity"
-                                                    value="{{ $cart_item['p_qty'] }}" data-max="10" pattern="[0-9]*">
+                                                    value="{{ $cart_item['p_qty'] }}" data-max="{{$item->qty}}" pattern="[0-9]*" readonly>
                                                 <a class="btn btn-increase" href="#"></a>
                                                 <a class="btn btn-reduce" href="#"></a>
+                                                @endif
+                                                @endforeach
                                             </div>
                                             <button type="submit" class="btn-update">cập nhật</button>
                                             {{-- <a href="" class="btn-update">cập nhật</a> --}}
