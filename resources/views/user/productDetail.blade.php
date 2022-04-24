@@ -3,7 +3,6 @@ integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiq
 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @extends('user.layouts.app')
 @section('content')
-
     <main id="main" class="main-site">
 
         <div class="container">
@@ -93,6 +92,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                             </div>
                             <div class="stock-info in-stock">
                                 <p class="availability">Số dư: <b>{{ $productDetail->qty }}</b></p>
+                                <input type="hidden" id="quant" value="{{ $productDetail->qty }}">
                             </div>
                             {{-- <form action="{{ route('add_to_cart') }}" method="GET"> --}}
                             <input type="hidden" class="p_price"
@@ -104,8 +104,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
                                 <span>Số lượng đặt:</span>
                                 <div class="quantity-input">
-                                    <input type="text" class="p_qty" name="product-quatity" value="1"
-                                        data-max="{{ $productDetail->qty }}" pattern="[0-9]*" readonly>
+                                    <input type="text" id="quantity_val" class="p_qty" name="product-quatity"
+                                        value="1" data-max="{{ $productDetail->qty }}" pattern="[0-9]*">
 
                                     <a class="btn btn-reduce" href="#"></a>
                                     <a class="btn btn-increase" href="#"></a>
@@ -114,7 +114,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                             <div class="wrap-butons">
                                 {{-- <a type="submit" onclick="this.closest('form').submit();return false;"
                                         class="btn add-to-cart">Thêm vào giỏ</a> --}}
-                                        <a href="#" class="btn add-to-cart btn_addtocart">Thêm vào giỏ</a>
+                                <a href="#" class="btn add-to-cart btn_addtocart">Thêm vào giỏ</a>
                                 {{-- <button class="btn_addtocart">THÊM VÀO GIỎ</button> --}}
                                 {{-- <div class="wrap-btn">
                                     <a href="#" class="btn btn-compare">Add Compare</a>
@@ -301,20 +301,21 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                                     <li class="product-item">
                                         <div class="product product-widget-style">
                                             <div class="thumbnnail">
-                                                <a href="{{ route('product_detail', ['id'=>$item->id]) }}"
+                                                <a href="{{ route('product_detail', ['id' => $item->id]) }}"
                                                     title="{{ $item->name }}">
-                                                    <figure><img
-                                                            src="{{ asset($item->url) }}"
-                                                            alt=""></figure>
+                                                    <figure><img src="{{ asset($item->url) }}" alt=""></figure>
                                                 </a>
                                             </div>
                                             <div class="product-info">
-                                                <a href="{{ route('product_detail', ['id'=>$item->id]) }}" class="product-name"><span>{{ \Illuminate\Support\Str::limit($item->name, 15, $end = '...') }}</span></a>
-                                                <div class="wrap-price"><span class="product-price">@if ($item->start_date == null)
-                                                    <?php echo number_format($item->price, -3, ',', ',') . ' VND'; ?>
-                                                    @else
-                                                    <?php echo number_format($item->sale_price, -3, ',', ',') . ' VND'; ?>
-                                                    @endif</span>
+                                                <a href="{{ route('product_detail', ['id' => $item->id]) }}"
+                                                    class="product-name"><span>{{ \Illuminate\Support\Str::limit($item->name, 15, $end = '...') }}</span></a>
+                                                <div class="wrap-price"><span class="product-price">
+                                                        @if ($item->start_date == null)
+                                                            <?php echo number_format($item->price, -3, ',', ',') . ' VND'; ?>
+                                                        @else
+                                                            <?php echo number_format($item->sale_price, -3, ',', ',') . ' VND'; ?>
+                                                        @endif
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -322,17 +323,17 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                                     @if (++$i == 5)
                                     @break
                                 @endif
-                                @endforeach
+                            @endforeach
 
 
-                            </ul>
-                        </div>
+                        </ul>
                     </div>
-
                 </div>
-                <!--end sitebar-->
 
-                {{-- <div class="single-advance-box col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            </div>
+            <!--end sitebar-->
+
+            {{-- <div class="single-advance-box col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="wrap-show-advance-info-box style-1 box-in-site">
                     <h3 class="title-box">Related Products</h3>
                     <div class="wrap-products">
@@ -485,39 +486,54 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
                 </div>
             </div> --}}
 
-            </div>
-            <!--end row-->
-
         </div>
-        <!--end container-->
+        <!--end row-->
 
-    </main>
-    <script>
-        $(document).ready(function() {
-            $('.btn_addtocart').click(function(e) {
-                e.preventDefault();
-                var p_id = $(this).closest('.wrap-product-detail').find('.p_id').val();
-                var p_name = $(this).closest('.wrap-product-detail').find('.p_name').val();
-                var p_qty = $(this).closest('.wrap-product-detail').find('.p_qty').val();
-                var p_img = $(this).closest('.wrap-product-detail').find('.p_img').val();
-                var p_price = $(this).closest('.wrap-product-detail').find('.p_price').val();
-                data = {
-                    'id': p_id,
-                    'name': p_name,
-                    'product-quatity': p_qty,
-                    'url': p_img,
-                    'price': p_price,
-                };
-                $.ajax({
-                    type: "GET",
-                    url: "{{ route('add_to_cart') }}",
-                    data: data,
-                    success: function(response) {
-                        alert('Thêm thành công')
-                    }
-                });
+    </div>
+    <!--end container-->
 
+</main>
+<script>
+    $(document).ready(function() {
+        $('.btn_addtocart').click(function(e) {
+            e.preventDefault();
+            var p_id = $(this).closest('.wrap-product-detail').find('.p_id').val();
+            var p_name = $(this).closest('.wrap-product-detail').find('.p_name').val();
+            var p_qty = $(this).closest('.wrap-product-detail').find('.p_qty').val();
+            var p_img = $(this).closest('.wrap-product-detail').find('.p_img').val();
+            var p_price = $(this).closest('.wrap-product-detail').find('.p_price').val();
+            data = {
+                'id': p_id,
+                'name': p_name,
+                'product-quatity': p_qty,
+                'url': p_img,
+                'price': p_price,
+            };
+            $.ajax({
+                type: "GET",
+                url: "{{ route('add_to_cart') }}",
+                data: data,
+                success: function(response) {
+                    alert(response)
+                }
             });
+
         });
-    </script>
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $(document).on('input', '#quantity_val', function() {
+            if(isNaN($("#quantity_val").val()) ){
+                $("#quantity_val").val(1);
+            }
+            if (parseInt($("#quantity_val").val()) > parseInt($("#quant").val()) ){
+                $("#quantity_val").val($("#quant").val());
+            }
+            if( parseInt($("#quantity_val").val()) <= 0 ){
+                    $("#quantity_val").val(1);
+            }
+        });
+    });
+</script>
 @endsection
