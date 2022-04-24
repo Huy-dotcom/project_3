@@ -55,7 +55,14 @@ class CartController extends Controller
         $p_id = $request->get('id');
 
         $p_price = $request->get('price');
-        $p_qty = $request->get('product-quatity');
+        $p_qty = (int)$request->get('product-quatity');
+
+        if(!is_int($p_qty) || $p_qty == null || $p_qty == ''){
+            if($request->ajax()){
+                return response('Đặt thất bại. xin kiểm tra lại số lượng!');
+            }
+            return redirect()->back()->with('notice','đặt thất bại. xim kiểm tra lại số lượng');
+        }
         $p_name = $request->get('name');
         $p_url = $request->get('url');
 
