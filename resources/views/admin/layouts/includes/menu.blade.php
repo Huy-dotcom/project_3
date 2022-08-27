@@ -134,3 +134,8 @@
         </div>
     </div>
 </li>
+<li class="nav-item {{ Route::is('notification.list') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('notification.list') }}">
+        <i class="fas fa-fw fa-comment"></i>
+        <span>Thông báo đơn hàng <span class="badge badge-danger ml-1 notification-count" style="font-size: 0.5rem;">{{ Auth::guard('admin')->user()->unreadNotifications->count() < 3 ? Auth::guard('admin')->user()->unreadNotifications->count() : '3+' }}</span></span></a>
+</li>

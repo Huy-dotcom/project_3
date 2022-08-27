@@ -94,7 +94,51 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bell fa-fw"></i>
+                                <!-- Counter - Alerts -->
+                                <span class="badge badge-danger badge-counter notification-count">{{ Auth::guard('admin')->user()->unreadNotifications->count() < 3 ? Auth::guard('admin')->user()->unreadNotifications->count() : '3+' }}</span>
+                            </a>
+                            <!-- Dropdown - Alerts -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header">
+                                    Thông báo
+                                </h6>
+                                @if (Auth::guard('admin')->user()->notifications()->count() > 0)
+                                    @if (Auth::guard('admin')->user()->unreadNotifications->count() > 0)
+                                        <div class="dropdown-item">
+                                            <a href="javascript:void(0)" onclick="markAllAsRead()">Đọc tất cả</a>
+                                        </div>
+                                    @endif
+                                    @foreach (Auth::guard('admin')->user()->notifications()
+                                    ->orderBy('read_at', 'asc')
+                                    ->orderBy('created_at', 'desc')->limit(3)->get() as $notification)
+                                        <div class="dropdown-item d-flex align-items-center">
+                                            <div class="mr-3">
+                                                <div class="icon-circle bg-success">
+                                                    <i class="fas fa-donate text-white"></i>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="small text-gray-500">
+                                                    {{ $notification->data['date'] }}
+                                                    @if (is_null($notification->read_at))
+                                                        <a class="ml-3 mark-as-read" href="javascript:void(0)" id="mark-as-read-{{ $notification->id }}" onclick="markAsRead('{{$notification->id}}')">Đã đọc</a>
+                                                        <span class="text-danger ml-3 new" id="new-{{ $notification->id }}">New</span>
+                                                    @endif
+                                                </div>
+                                                Bạn vừa nhận được đơn hàng mới, mã đơn hàng là: #{{ $notification->data['order_id'] }}, xin vui lòng kiểm tra
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                    <a class="dropdown-item text-center small text-gray-500" href="{{ route('notification.list') }}">Xem chi tiết</a>
+                                @else
+                                    <a class="dropdown-item d-flex align-items-center" href="javascript:void(0)">Hiện chưa có thông báo nào</a>
+                                @endif
+                            </div>
+                        </li>
+                        <div class="topbar-divider d-none d-sm-block"></div>
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
@@ -374,6 +418,7 @@
           chart.draw(data, options);
         }
     </script>
+        <script src="{{ asset('admin/js/notification.js') }}"></script>
 </body>
 
 </html>
