@@ -131,6 +131,14 @@ Route::namespace('Admin')->prefix('ad')->group(function () {
 
             Route::post('edit/{id}','OrderController@update')->name('order.edit');
         });
+        // Notification
+        Route::group(['prefix'=>'notification'],function(){
+            Route::get('list','NotificationController@index')->name('notification.list');
+
+            Route::get('mark-all-as-read','NotificationController@markAllAsRead')->name('notification.mark.all.as.read');
+
+            Route::get('mark-as-read','NotificationController@markAsRead')->name('notification.mark.as.read');
+        });
     });
 });
 
