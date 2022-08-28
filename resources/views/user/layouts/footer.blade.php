@@ -1,4 +1,5 @@
 <footer id="footer">
+
     <div class="wrap-footer-content footer-style-1">
 
         <div class="wrap-function-info">

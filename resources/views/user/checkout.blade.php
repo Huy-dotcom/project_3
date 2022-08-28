@@ -52,29 +52,29 @@
                         <h3 class="box-title">Thông tin đơn hàng</h3>
                         {{-- <form action="#" method="get" name="frm-billing"> --}}
                             <p class="row-in-form">
-                                <label for="fname">Tên khách hàng:</label>
-                                <span>{{$user_info->name}}</span>
+                                <label for="fname">Địa chỉ người nhận:</label>
+                                <span><input style="width: 200px; height: 50px;" type="text" name="address"  placeholder="Số nhà - đường - huyện/quận - tỉnh/thành phố..." required></span>
                             </p>
                             {{-- <p class="row-in-form">
 							<label for="lname">last name<span>*</span></label>
 							<input id="lname" type="text" name="lname" value="" placeholder="Your last name">
 						</p> --}}
-                            <p class="row-in-form">
+                            {{-- <p class="row-in-form">
                                 <label for="email">Email:</label>
-                                <span>{{$user_info->email}}.</span>
-                            </p>
+                                <span> {{$user_info->email}}</span>
+                            </p> --}}
                             <p class="row-in-form">
                                 <label for="phone">Số điện thoại:</label>
-                                <span>{{$user_info->phone}}</span>
+                                <span><input style="width: 200px; height: 30px;" type="text" name="phone" value="{{$user_info->phone}}" required></span>
                             </p>
                             <p class="row-in-form">
-                                <label for="add">Địa chỉ người nhận:</label>
-                                <input id="add" type="text" name="address" required
-                                    placeholder="Số nhà - đường - huyện/quận - tỉnh/thành phố...">
+                                <label for="add">Tên người nhận: </label>
+                                <span><input style="width: 200px; height: 30px;" type="text" name="receiver" required
+                                    value="{{$user_info->name}}"></span>
                             </p>
-                            <hr>
-                            Thông tin sản phẩm:
+
                             <div class="wrap-iten-in-cart">
+                                Thông tin sản phẩm:
                                 @php
                                     $total = 0;
                                 @endphp
@@ -147,22 +147,22 @@
                                 <h4 class="title-box">Phương thức thanh toán:</h4>
                                 <div class="choose-payment-methods">
                                     <label class="payment-method">
-                                        <input name="payment-method" id="payment-method-bank" value="bank" type="radio">
+                                        <input name="payment-method" id="payment-method-bank" value="1" type="radio" checked>
                                         <span>Tiền mặt</span>
-                                        <span class="payment-desc">Thanh toán trước khi nhận hàng</span>
+                                        <span class="payment-desc">Thanh toán sau khi nhận hàng</span>
                                     </label>
                                     <label class="payment-method">
-                                        <input name="payment-method" id="payment-method-bank" value="bank" type="radio">
+                                        <input name="payment-method" id="payment-method-bank" value="2" type="radio">
                                         <span>Chuyển Khoản ngân hàng</span>
                                         <span class="payment-desc">tiện lợi, nhanh chóng</span>
                                     </label>
                                     <label class="payment-method">
-                                        <input name="payment-method" id="payment-method-visa" value="visa" type="radio">
+                                        <input name="payment-method" id="payment-method-visa" value="3" type="radio">
                                         <span>visa</span>
                                         <span class="payment-desc">dành cho khách hàng ngoài nước</span>
                                     </label>
                                     <label class="payment-method">
-                                        <input name="payment-method" id="payment-method-paypal" value="paypal" type="radio">
+                                        <input name="payment-method" id="payment-method-paypal" value="4" type="radio">
                                         <span>Paypal</span>
                                         <span class="payment-desc">Thông dụng trên toàn cầu</span>
                                     </label>

@@ -36,6 +36,14 @@ class CheckoutController extends Controller
         if (session()->has('cart')) {
             $users = Admin::all();
 
+            $receiver = $request->get('receiver');
+            $phone = $request->get('phone');
+            $payment = $request->get('payment-method');
+            $check = '1';
+            if ($payment == 1){
+                $check = '0';
+            }
+
             if ($request->get('address') == null) {
                 return redirect()->back()->with('notice', 'chưa nhập địa chỉ');
             }
@@ -52,6 +60,9 @@ class CheckoutController extends Controller
                     'address' => $request->get('address'),
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
+                    'receiver' => $receiver,
+                    'tel' => $phone,
+                    'is_paid' => $check,
                 ]);
                 $orderID = 'order_0';
                 $order = Order::find($orderID);
@@ -66,6 +77,9 @@ class CheckoutController extends Controller
                             'address' => $request->get('address'),
                             'created_at' => Carbon::now(),
                             'updated_at' => Carbon::now(),
+                            'receiver' => $receiver,
+                            'tel' => $phone,
+                            'is_paid' => $check,
                         ]);
                         $orderID = $OrderIDfake . $i;
                         $order = Order::find($orderID);
@@ -140,7 +154,7 @@ class CheckoutController extends Controller
             if ($orderID == "") {
                 return redirect()->back()->with('notice', 'something went wrong');
             }
-            
+
             $cart = session()->get('cart');
             if($cart == []){
                 return redirect()->back()->with('notice', 'Giỏ hàng trống');

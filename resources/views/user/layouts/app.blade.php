@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Home</title>
+
 
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets')}}/images/custom/logo.png">
 	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700,700italic,900,900italic&amp;subset=latin,latin-ext" rel="stylesheet">
@@ -17,6 +19,7 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('assets')}}/css/style.css">
 	<link rel="stylesheet" type="text/css" href="{{asset('assets')}}/css/color-01.css">
 </head>
+
 	<!--header-->
 	@include('user.layouts.header')
 
@@ -24,8 +27,10 @@
     {{-- @include('user.layouts.content') --}}
     @yield('content')
 
+
     {{-- footer --}}
     @include('user.layouts.footer')
+
 
 	<script src="{{asset('assets')}}/js/jquery-1.12.4.minb8ff.js?ver=1.12.4"></script>
 	<script src="{{asset('assets')}}/js/jquery-ui-1.12.4.minb8ff.js?ver=1.12.4"></script>
