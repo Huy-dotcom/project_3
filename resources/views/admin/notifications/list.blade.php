@@ -7,7 +7,9 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-body">
-        <a href="javascript:void(0)" onclick="markAllAsRead()" class="btn btn-primary">Đọc tất cả</a>
+        @if ($notifications->count() > 0)
+            <a href="javascript:void(0)" onclick="markAllAsRead()" class="btn btn-primary">Đọc tất cả</a>
+        @endif
         <div class="table-responsive mt-3">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
