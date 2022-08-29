@@ -8,6 +8,9 @@ function markAllAsRead()
                 $('.notification-count').html(0);
                 $('.new').hide();
                 $('.mark-as-read').hide();
+                for (var x of response.notifications) {
+                    $(`#date-read-${x.id}`).html(x.date_read);
+                }
             }
         }
     });
