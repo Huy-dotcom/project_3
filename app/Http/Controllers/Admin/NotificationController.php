@@ -22,8 +22,16 @@ class NotificationController extends Controller
     public function markAllAsRead()
     {
         Auth::guard('admin')->user()->unreadNotifications->markAsRead();
+        $notifications = Auth::guard('admin')->user()
+        ->notifications()
+        ->orderBy('read_at', 'asc')
+        ->orderBy('created_at', 'desc')->get();
+        foreach ($notifications as $k => $notification) {
+            $notifications[$k]['date_read'] = date('d/m/Y H:i:s', strtotime($notification->read_at));
+        }
         return response()->json([
-            'status' => 200
+            'status' => 200,
+            'notifications' => $notifications
         ]); 
     }
 
