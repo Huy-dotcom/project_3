@@ -138,6 +138,8 @@ Route::namespace('Admin')->prefix('ad')->group(function () {
             Route::get('mark-all-as-read','NotificationController@markAllAsRead')->name('notification.mark.all.as.read');
 
             Route::get('mark-as-read','NotificationController@markAsRead')->name('notification.mark.as.read');
+
+            Route::get('render','NotificationController@render');
         });
     });
 });
