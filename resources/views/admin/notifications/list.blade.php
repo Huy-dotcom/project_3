@@ -7,9 +7,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-body">
-        @if ($notifications->count() > 0)
-            <a href="javascript:void(0)" onclick="markAllAsRead()" class="btn btn-primary">Đọc tất cả</a>
-        @endif
+        <a href="javascript:void(0)" onclick="markAllAsRead()" class="btn btn-primary mark-all-as-read-{{ Auth::guard('admin')->user()->id }} {{ Auth::guard('admin')->user()->unreadNotifications->count() > 0 ? 'show' : 'hide' }}">Đọc tất cả</a>
         <div class="table-responsive mt-3">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
@@ -35,12 +33,12 @@
                     @foreach ($notifications as $notification)
                         <tr>
                             <td>{{ $count }}</td>
-                            <td>Bạn vừa nhận được đơn hàng mới, mã đơn hàng là: #{{ $notification->data['order_id'] }}, xin vui lòng kiểm tra @if(is_null($notification->read_at)) <span class="text-danger ml-3 new" id="new-item-{{ $notification->id }}">New</span></td>@endif
+                            <td>Bạn vừa nhận được đơn hàng mới, mã đơn hàng là: #{{ $notification->data['order_id'] }}, xin vui lòng kiểm tra @if(is_null($notification->read_at)) <span class="text-danger ml-3 new-{{ Auth::guard('admin')->user()->id }}" id="new-item-{{ $notification->id }}">New</span></td>@endif
                             <td>{{ $notification->data['date'] }}</td>
                             <td id="date-read-{{ $notification->id }}">{{ !is_null($notification->read_at) ? date('d/m/Y H:i:s', strtotime($notification->read_at)) : 'N/A' }}</td>
                             <td>
                                 @if (is_null($notification->read_at))
-                                    <a href="javascript:void(0)" class="btn btn-primary btn-sm mark-as-read" id="notification-mark-as-read-{{ $notification->id }}" onclick="markAsRead('{{$notification->id}}')">
+                                    <a href="javascript:void(0)" class="btn btn-primary btn-sm mark-as-read-{{ Auth::guard('admin')->user()->id }}" id="notification-mark-as-read-{{ $notification->id }}" onclick="markAsRead('{{$notification->id}}')">
                                         Đã đọc
                                     </a>
                                 @endif
