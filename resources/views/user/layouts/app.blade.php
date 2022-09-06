@@ -18,14 +18,47 @@
 	<link rel="stylesheet" type="text/css" href="{{asset('assets')}}/css/chosen.min.css">
 	<link rel="stylesheet" type="text/css" href="{{asset('assets')}}/css/style.css">
 	<link rel="stylesheet" type="text/css" href="{{asset('assets')}}/css/color-01.css">
+
 </head>
 
 	<!--header-->
 	@include('user.layouts.header')
 
+
 	{{-- content --}}
     {{-- @include('user.layouts.content') --}}
     @yield('content')
+
+       <!-- Messenger Plugin chat Code -->
+       <div id="fb-root"></div>
+
+       <!-- Your Plugin chat code -->
+       <div id="fb-customer-chat" class="fb-customerchat">
+       </div>
+
+       <script>
+         var chatbox = document.getElementById('fb-customer-chat');
+         chatbox.setAttribute("page_id", "112931581516958");
+         chatbox.setAttribute("attribution", "biz_inbox");
+       </script>
+
+       <!-- Your SDK code -->
+       <script>
+         window.fbAsyncInit = function() {
+           FB.init({
+             xfbml            : true,
+             version          : 'v14.0'
+           });
+         };
+
+         (function(d, s, id) {
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) return;
+           js = d.createElement(s); js.id = id;
+           js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+       </script>
 
 
     {{-- footer --}}

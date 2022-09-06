@@ -149,9 +149,9 @@
                                     <label class="payment-method">
                                         <input name="payment-method" id="payment-method-bank" value="1" type="radio" checked>
                                         <span>Tiền mặt</span>
-                                        <span class="payment-desc">Thanh toán sau khi nhận hàng</span>
+                                        {{-- <span class="payment-desc">Thanh toán sau khi nhận hàng</span> --}}
                                     </label>
-                                    <label class="payment-method">
+                                    {{-- <label class="payment-method">
                                         <input name="payment-method" id="payment-method-bank" value="2" type="radio">
                                         <span>Chuyển Khoản ngân hàng</span>
                                         <span class="payment-desc">tiện lợi, nhanh chóng</span>
@@ -165,12 +165,14 @@
                                         <input name="payment-method" id="payment-method-paypal" value="4" type="radio">
                                         <span>Paypal</span>
                                         <span class="payment-desc">Thông dụng trên toàn cầu</span>
-                                    </label>
+                                    </label> --}}
                                 </div>
                                 {{-- <form action="{{ route('checkout_process') }}" method="get"> --}}
                                     <input type="hidden" name="total" value="{{$total}}">
                                 <p class="summary-info grand-total"><span>Tổng cộng:</span> <span
                                         class="grand-total-price"><?php echo number_format($total, -3, ',', ',') . ' VND'; ?></span></p>
+                                        <p class="summary-info grand-total"><span>Tiền cọc:</span> <span
+                                            class="grand-total-price">500,000 VND</span></p>
                                 <button type="submit" class="btn-submit" >xác nhận</button>
                                 {{-- </form> --}}
                             </div>
